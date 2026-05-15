@@ -1,0 +1,23 @@
+# robots.txt für sisu-coaching.de
+# Erlaubt allen Suchmaschinen das Crawlen aller Inhalte.
+
+User-agent: *
+Allow: /
+
+# KI-Crawler ohne Trainings-Nutzen ausschließen (optional, kann jederzeit angepasst werden)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+Sitemap: https://www.sisu-coaching.de/sitemap.xml
