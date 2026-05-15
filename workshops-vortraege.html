@@ -1,0 +1,3116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>SISU Coaching — Workshops &amp; Vorträge (Mockup v1)</title>
+
+<!-- Schriften: Cormorant Garamond (Display) + Jost (Body) + Pinyon Script (Akzent)
+     ⚠ Im Live-Build durch self-hosted Fonts ersetzen (DSGVO!) — siehe README -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Serif+Display:ital@0;1&family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   FARBEN — SISU-Palette (von Sina, 2026-05-09)
+   ========================================================= */
+:root {
+    /* Theme A — SISU original (von Sinas Zettel) — AKTIV */
+    --color-bg:           #ECE6E3;  /* Hintergrund beige */
+    --color-bg-alt:       #F4F1F0;  /* hellgrau (Surface-Variant) */
+    --color-surface:      #FFFFFF;  /* Cards */
+    --color-text:         #3E4B5C;  /* Schrift — dunkles Blaugrau */
+    --color-text-muted:   #615244;  /* braun (Social/Sekundärtext) */
+    --color-accent:       #D4A86D;  /* aktiver Button — warmes Gold/Beige */
+    --color-accent-dark:  #BF9056;  /* orange-beige (Hover, Borders) */
+    --color-accent-light: #FCDFDD;  /* zart Rosa (Highlight-Kästchen) */
+    --color-pink:         #FF66C4;  /* knalliger Pink-Akzent — sparsam für Numbers/Highlights */
+    --color-border:       #C7C8CB;  /* silber (Linien) */
+
+    /* Theme B — Alternative dezent (uncomment to use) — wärmer, weniger Rosa
+    --color-bg:           #FBF9F7;
+    --color-bg-alt:       #F4EDEB;
+    --color-surface:      #FFFFFF;
+    --color-text:         #2A2520;
+    --color-text-muted:   #786B65;
+    --color-accent:       #B5689F;
+    --color-accent-dark:  #8E4A7A;
+    --color-accent-light: #F4EDEB;
+    --color-border:       #E8DDDA;
+    */
+
+    /* Schriften — Mockup-Variante mit Google Fonts (Live: self-hosted) */
+    --font-display: 'Cormorant Garamond', ui-serif, Georgia, "Times New Roman", serif;
+    --font-script:  'Pinyon Script', 'Allura', cursive;
+    --font-body:    'Jost', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+    --space-xxl: 8rem;
+
+    /* Layout */
+    --container-w: 1180px;
+    --container-narrow: 760px;
+    --radius: 8px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 1px 2px rgba(62, 75, 92, 0.06), 0 1px 3px rgba(62, 75, 92, 0.04);
+    --shadow-md: 0 6px 18px rgba(62, 75, 92, 0.07), 0 2px 6px rgba(62, 75, 92, 0.04);
+}
+
+/* =========================================================
+   RESET & BASE
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-text);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--color-accent-dark); text-decoration: none; transition: color 0.15s ease; }
+a:hover { color: var(--color-text); text-decoration: underline; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 3px; }
+
+h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.18;
+    letter-spacing: -0.005em;
+    color: var(--color-text);
+}
+h1 { font-size: clamp(2.2rem, 5.5vw, 3.8rem); }
+h2 { font-size: 34px; line-height: 1.25; margin-bottom: var(--space-sm); }
+h3 { font-size: 1.4rem; margin-bottom: var(--space-xs); font-weight: 500; }
+p { margin-bottom: var(--space-sm); }
+
+.script {
+    font-family: var(--font-script);
+    font-weight: 400;
+    color: var(--color-accent-dark);
+}
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+.container { max-width: var(--container-w); margin: 0 auto; padding: 0 var(--space-md); }
+.container-narrow { max-width: var(--container-narrow); margin: 0 auto; padding: 0 var(--space-md); }
+section { padding: var(--space-xl) 0; }
+.section-alt { background: var(--color-bg-alt); }
+
+.eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-accent-dark);
+    margin-bottom: var(--space-sm);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn {
+    display: inline-block;
+    padding: 0.85rem 1.7rem;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.18s ease;
+    border: 1.5px solid transparent;
+    text-align: center;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+}
+.btn-primary {
+    background: var(--color-accent);
+    color: #FFFFFF;
+    border-color: var(--color-accent);
+}
+.btn-primary:hover {
+    background: var(--color-accent-dark);
+    border-color: var(--color-accent-dark);
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border-color: var(--color-border);
+}
+.btn-secondary:hover { border-color: var(--color-text); color: var(--color-text); text-decoration: none; }
+.btn-small { padding: 0.55rem 1.1rem; font-size: 0.85rem; }
+
+/* =========================================================
+   HEADER / NAV
+   ========================================================= */
+.site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(236, 230, 227, 0.94);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--color-border);
+}
+.nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    max-width: var(--container-w); margin: 0 auto;
+    gap: var(--space-md);
+}
+.logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    flex-shrink: 0;
+}
+.logo:hover { text-decoration: none; }
+.logo img {
+    /* Header-Logo: Baum + „SISU" Schriftzug (PNG, eng zugeschnitten — kein viewBox-Padding) */
+    height: 72px;
+    width: auto;
+    display: block;
+}
+@media (max-width: 900px) {
+    .logo img { height: 56px; }
+}
+@media (max-width: 600px) {
+    .logo img { height: 44px; }
+}
+.nav-links {
+    display: flex; gap: var(--space-md); align-items: center;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+.nav-links a { color: var(--color-text); }
+.nav-links a:hover { color: var(--color-accent-dark); text-decoration: none; }
+.nav-toggle { display: none; }
+
+@media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-toggle {
+        display: block; font-size: 1.5rem; color: var(--color-text);
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+    position: relative;
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+    padding: 0;
+    overflow: hidden;
+    min-height: 680px;
+}
+.hero .container {
+    position: relative;
+    z-index: 2;
+    min-height: 680px;
+    display: flex;
+    align-items: center;
+}
+.hero-content {
+    max-width: 58%;
+    padding: var(--space-xl) 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.hero-photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 44vw;
+    max-width: 780px;
+    background: transparent;
+    border-radius: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+.hero-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+}
+@media (max-width: 800px) {
+    .hero { padding: var(--space-lg) 0 var(--space-xl); min-height: auto; }
+    .hero .container { display: block; min-height: auto; align-items: initial; }
+    .hero-content { max-width: 100%; padding: 0; }
+    .hero-photo {
+        position: static;
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto var(--space-md);
+        aspect-ratio: 4/5;
+    }
+}
+.hero h1 {
+    /* zurück zu Cormorant Garamond (Bodoni Moda war Test) */
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5.8vw, 4.2rem);
+    margin-bottom: var(--space-md);
+    color: var(--color-text);
+    font-weight: 500;
+}
+.hero h1 em {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--color-accent-dark);
+    font-weight: 500;
+    letter-spacing: 0.005em;
+}
+.hero p.lead {
+    font-size: 1.2rem;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+    max-width: 680px;
+    line-height: 1.55;
+}
+.hero-ctas {
+    display: flex; gap: var(--space-sm); flex-wrap: wrap;
+    margin-top: var(--space-md);
+}
+.hero-trust {
+    display: flex; gap: var(--space-md); margin-top: var(--space-lg);
+    flex-wrap: wrap; font-size: 0.85rem; color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border); padding-top: var(--space-sm);
+}
+.hero-trust span::before { content: "▪ "; color: var(--color-accent-dark); margin-right: 0.25rem; }
+
+/* =========================================================
+   SECTION: WAS SICH VERÄNDERT (Outcomes)
+   v38: Container nochmal verbreitert (1500px) → deutlich mehr
+        Platz pro Spalte. Stat-Box min-height: 220px großzügig
+        für längsten Text. Quelle rechtsbündig + kleiner.
+   ========================================================= */
+.outcomes {
+    background: var(--color-surface);
+    /* oben üppig, unten knapp — damit Banner näher an die nächste Section rückt */
+    padding: var(--space-xxl) 0 var(--space-md);
+}
+.outcomes .container {
+    max-width: 1500px;                  /* deutlich breiter — mehr Atemraum pro Spalte */
+}
+/* Intro mittig oben, viel Atemraum drunter zum Grid */
+.outcomes-intro {
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto var(--space-xl);
+    display: block;
+    padding: 0;
+}
+.outcomes-intro .eyebrow {
+    display: block;
+    margin-bottom: var(--space-md);
+}
+.outcomes-intro h2 {
+    font-size: 34px;  /* zentriert leicht reduziert */
+    line-height: 1.25;
+    margin: 0;
+    max-width: none;
+}
+/* 4-Spalten-Grid (statt 5) — jede Spalte hat dadurch mehr Platz */
+.outcomes-layout {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    align-items: stretch;
+}
+.outcome-card {
+    background: transparent;
+    border: none;
+    border-left: 1px solid var(--color-border);
+    border-radius: 0;
+    padding: 0 var(--space-md);          /* gleicher Padding für ALLE — Pflicht */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-width: 0;
+}
+.outcome-card:first-child {
+    border-left: none;
+}
+.outcome-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;          /* Icon links, Nummer rechts daneben */
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);       /* mehr Abstand zu Titel — von md → lg */
+    min-height: 80px;
+}
+.outcome-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-bg-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    flex-shrink: 0;
+}
+.outcome-icon svg {
+    width: 26px;
+    height: 26px;
+}
+.outcome-card .outcome-number {
+    font-family: 'DM Serif Display', var(--font-display);
+    font-size: clamp(3.8rem, 5.2vw, 5rem);   /* nochmal etwas größer */
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-pink);
+    line-height: 0.9;
+}
+.outcome-card h3 {
+    font-family: var(--font-body);
+    font-size: 1.08rem;                   /* von 0.95 → größer & lesbarer */
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-md);          /* mehr Abstand zu p */
+    line-height: 1.3;
+    min-height: 2.7em;                    /* Platz für 2 Zeilen Titel */
+    text-align: left;
+}
+.outcome-card p {
+    font-size: 1.05rem;                    /* leicht größer für bessere Lesbarkeit */
+    line-height: 1.65;                     /* mehr Atmung pro Zeile */
+    color: var(--color-text);
+    margin: 0 0 var(--space-lg);           /* mehr Abstand zur Stat-Box */
+    flex-grow: 1;
+    text-align: left;
+    min-height: 7.5em;                     /* Platz für 4-5 Zeilen Body */
+}
+.outcome-stat {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    padding: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);                   /* mehr Atmung zwischen Zahl und Text */
+    margin-top: auto;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 220px;                      /* großzügig — wirklich für alle Texte sicher */
+}
+.outcome-stat-num {
+    font-family: 'DM Serif Display', var(--font-display);
+    font-style: italic;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--color-pink);
+    line-height: 1;
+    flex-shrink: 0;
+}
+.outcome-stat-label {
+    font-size: 0.98rem;
+    color: var(--color-text);
+    line-height: 1.55;
+}
+.outcomes-source {
+    text-align: right;                      /* RECHTSBÜNDIG wie im Layout */
+    font-size: 0.78rem;                     /* kleiner (war 0.85) */
+    color: var(--color-text-muted);
+    margin-top: var(--space-md);            /* näher an die Boxen (war xl) */
+    margin-bottom: 0;
+}
+
+@media (max-width: 1100px) {
+    .outcomes-layout {
+        grid-template-columns: 1fr 1fr;
+        row-gap: var(--space-lg);
+    }
+    .outcome-card {
+        padding: 0 var(--space-md);
+    }
+    .outcome-card:nth-child(odd) {
+        border-left: none;
+        padding-left: 0;
+    }
+    .outcome-card:nth-child(even) {
+        border-left: 1px solid var(--color-border);
+        padding-left: var(--space-md);
+        padding-right: 0;
+    }
+}
+@media (max-width: 600px) {
+    .outcomes-layout {
+        grid-template-columns: 1fr;
+    }
+    .outcome-card,
+    .outcome-card:nth-child(even),
+    .outcome-card:nth-child(odd) {
+        border-left: none;
+        border-top: 1px solid var(--color-border);
+        padding: var(--space-md) 0;
+    }
+    .outcome-card:first-child {
+        border-top: none;
+        padding-top: 0;
+    }
+    .outcome-card h3 { min-height: 0; }   /* einspaltig braucht's das nicht */
+}
+
+/* ---------------------------------------------------------
+   Outcomes-Banner — „FERTILITY IS A WORKPLACE ISSUE"
+   Sitzt UNTEN in der weißen Outcomes-Section, läuft langsam (120s)
+   wie der frühere Watermark. Schrift in Zart-Rosa #FCDFDD.
+   --------------------------------------------------------- */
+.outcomes-banner {
+    overflow: hidden;
+    margin-top: var(--space-md);    /* näher an die Karten (von xl → md) */
+    width: 100%;
+}
+.outcomes-banner-track {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker-scroll 120s linear infinite;
+    width: max-content;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+}
+.outcomes-banner-track span {
+    /* Cormorant Garamond italic statt DM Serif Display → deutlich schlanker
+       bei gleicher Größe, weight 300 für extra-fein */
+    font-family: var(--font-display);        /* Cormorant Garamond */
+    font-style: italic;
+    font-size: clamp(3.5rem, 6.5vw, 5.8rem);
+    color: var(--color-accent-light);        /* #FCDFDD */
+    line-height: 1;
+    flex-shrink: 0;
+    font-weight: 300;                         /* dünner Schnitt */
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+@media (prefers-reduced-motion: reduce) {
+    .outcomes-banner-track { animation: none; }
+}
+
+/* Animierter Slogan-Banner — durchlaufend von rechts nach links
+   Cormorant Italic in Gold auf Hellgrau (statt Pinyon Script auf Rosa) */
+.ticker-banner {
+    overflow: hidden;
+    background: var(--color-bg-alt);
+    padding: 0.95rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+.ticker-track {
+    display: flex;
+    gap: 1.4rem;
+    white-space: nowrap;
+    animation: ticker-scroll 50s linear infinite;
+    width: max-content;
+    align-items: center;
+}
+.ticker-track span {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+    color: var(--color-accent-dark);
+    line-height: 1.1;
+    flex-shrink: 0;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+}
+.ticker-divider {
+    color: var(--color-accent) !important;
+    font-style: normal !important;
+    font-weight: 300 !important;
+}
+@keyframes ticker-scroll {
+    /* translate3d statt translateX — erzwingt GPU-Layer, smoother Animation */
+    0%   { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .ticker-track { animation: none; padding-left: var(--space-md); }
+    .ticker-track span:nth-child(n+2) { display: none; }
+}
+
+/* =========================================================
+   SECTION: ZAHLEN
+   ========================================================= */
+/* .stats folgt direkt nach dem Outcomes-Banner — padding-top reduziert für näheren Übergang */
+.stats { padding-top: var(--space-lg); }
+.stats h2 { max-width: 720px; margin-bottom: var(--space-lg); }
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-lg);
+}
+.stat {
+    padding: var(--space-lg) 0 var(--space-md);
+    border-top: 2px solid var(--color-accent);
+    text-align: center;
+}
+.stat-number {
+    font-family: var(--font-display);
+    font-size: clamp(4.5rem, 7vw, 6rem); /* deutlich größer wie im Layout */
+    font-weight: 600;
+    color: var(--color-pink);
+    line-height: 1;
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.02em;
+}
+.stat-label {
+    font-size: 1rem;
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+    line-height: 1.5;
+    text-align: center;
+}
+.stat-source {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+/* =========================================================
+   SECTION: ANGEBOTE (3 Säulen)
+   ========================================================= */
+.offers h2 { text-align: center; margin-bottom: var(--space-xl); }
+.offer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+}
+.offer-card {
+    padding: var(--space-lg) var(--space-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    display: flex; flex-direction: column;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.offer-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.offer-card.featured {
+    border-color: var(--color-pink);
+    border-width: 2px;
+}
+.offer-badge {
+    position: absolute;
+    top: -12px;
+    right: var(--space-md);
+    background: var(--color-pink);
+    color: #FFFFFF;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    padding: 0.45rem 0.95rem;
+    border-radius: 4px;
+}
+.offer-tier {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-accent-dark);
+    margin-bottom: var(--space-md);
+}
+.offer-card h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: var(--space-xs);
+    color: var(--color-text);
+}
+.offer-tagline {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-bottom: var(--space-md);
+}
+.offer-price-block {
+    display: flex; align-items: baseline; gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+.offer-price {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 3.6vw, 2.8rem);
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1;
+}
+.offer-price-unit {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+.offer-meta {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+    margin-top: 0.25rem;
+}
+.offer-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: var(--space-md) 0;
+}
+.offer-card ul {
+    margin: 0 0 var(--space-lg);
+    padding: 0;
+    flex: 1;
+    list-style: none;
+}
+.offer-card li {
+    padding: 0.5rem 0 0.5rem 1.6rem;
+    position: relative;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-text);
+}
+.offer-card li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    color: var(--color-accent-dark);
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+.offer-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+}
+.offer-card.featured .offer-btn {
+    background: var(--color-accent);
+    color: var(--color-text);
+    border-color: var(--color-accent);
+}
+.offer-card.featured .offer-btn:hover {
+    background: var(--color-accent-dark);
+    border-color: var(--color-accent-dark);
+    color: #FFFFFF;
+}
+
+@media (max-width: 800px) { .offer-grid { grid-template-columns: 1fr; } }
+
+/* =========================================================
+   SECTION: PROZESS (3 Schritte)
+   ========================================================= */
+.process h2 {
+    font-size: 34px;   /* zentriert leicht reduziert */
+    line-height: 1.25;
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+.process-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    max-width: 880px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.process-step {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    align-items: center;
+    gap: 0;
+}
+/* Tropfenform — farbiger Kreis mit Schwanz nach rechts */
+.process-drop {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    z-index: 2;
+}
+.process-drop::before {
+    /* Außenform: farbiger Kreis */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--drop-color, var(--color-pink));
+    border-radius: 50%;
+    z-index: 1;
+}
+.process-drop::after {
+    /* Spitzer Schwanz nach rechts — gleiche Farbe wie der Kreis */
+    content: "";
+    position: absolute;
+    right: -55px;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-top: 45px solid transparent;
+    border-bottom: 45px solid transparent;
+    border-left: 70px solid var(--drop-color, var(--color-pink));
+    transform: translateY(-50%);
+    z-index: 1;
+}
+/* Innen weißer Kreis mit Number */
+.process-drop-inner {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    background: var(--color-surface);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+.process-num {
+    font-family: 'DM Serif Display', var(--font-display);
+    font-style: italic;
+    font-size: 3.4rem;
+    font-weight: 400;
+    color: var(--color-text);
+    line-height: 1;
+}
+/* Farb-Abstufung Tropfen — 4-Stufen-Variante (für Workshop-Ziele) */
+.process-drop-1 { --drop-color: #FCDFDD; }  /* zart Rosa */
+.process-drop-2 { --drop-color: #FEC4DC; }  /* leichtes Rosa */
+.process-drop-3 { --drop-color: #FEA2D0; }  /* mittlere Pink-Tönung */
+.process-drop-4 { --drop-color: #FF66C4; }  /* SISU-Pink-Akzent */
+
+.process-text {
+    background: var(--color-bg-alt);
+    padding: var(--space-md) var(--space-lg);
+    margin-left: 24px; /* fügt den Tropfen-Schwanz visuell in den Text-Block ein */
+    border-radius: var(--radius);
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.process-text h3 {
+    /* Auf coaching.html: angepasst an fu-pillar / fu-gain Card-Überschriften (Jost Sans, klein, gespaced) */
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+}
+.process-text p {
+    color: var(--color-text);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+    .process-step {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: var(--space-md);
+    }
+    .process-drop::after { display: none; }
+    .process-text {
+        margin-left: 0;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   SECTION: ÜBER SINA
+   ========================================================= */
+.about-sina {
+    background: var(--color-bg-alt);
+    padding: 0; /* full-bleed über die ganze Breite */
+}
+/* 4-Spalten-Layout: Bild · Text · Bild · Text — von Browserrand zu Browserrand */
+.about-fourcol {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+    min-height: 540px;
+}
+.about-image {
+    overflow: hidden;
+    background: var(--color-accent-light);
+}
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.about-content {
+    background: var(--color-surface);
+    padding: var(--space-lg) var(--space-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.about-content h2 {
+    font-size: 34px;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+    line-height: 1.25;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.about-content h2 em {
+    font-style: italic;
+    color: var(--color-accent-dark);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.about-content p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+    max-width: 320px;
+}
+.about-content .btn { margin-top: var(--space-sm); }
+
+@media (max-width: 1100px) {
+    .about-fourcol { grid-template-columns: 1fr 1fr; }
+    .about-image { aspect-ratio: 4/3; }
+}
+@media (max-width: 600px) {
+    .about-fourcol { grid-template-columns: 1fr; }
+    .about-image { aspect-ratio: 4/3; }
+}
+
+/* =========================================================
+   SECTION: TESTIMONIALS
+   v45: Strich-getrenntes Spalten-Layout (analog Outcomes),
+        5 Sterne oben, Italic-Zitat zentriert, Name in Caps Gold.
+   ========================================================= */
+.testimonials h2 {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    align-items: stretch;
+}
+.testimonial {
+    padding: 0 var(--space-md);
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-left: 1px solid var(--color-border);   /* dünner Trennstrich */
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.testimonial:first-child {
+    border-left: none;
+}
+.testimonial-stars {
+    color: var(--color-accent);                    /* gold */
+    font-size: 1.05rem;
+    letter-spacing: 0.32em;
+    margin-bottom: var(--space-md);
+    user-select: none;
+}
+.testimonial blockquote {
+    font-family: var(--font-display);              /* Cormorant Garamond */
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--color-text);
+    margin: 0 0 var(--space-lg);
+    max-width: 36ch;
+    quotes: "„" """ "‚" "'";
+    flex-grow: 1;
+}
+.testimonial blockquote::before { content: open-quote; }
+.testimonial blockquote::after { content: close-quote; }
+.testimonial-name {
+    font-family: var(--font-body);                 /* Jost */
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-accent-dark);               /* warmes Gold */
+    font-weight: 500;
+    margin-top: auto;
+}
+
+@media (max-width: 900px) {
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    .testimonial {
+        border-left: none;
+        border-top: 1px solid var(--color-border);
+        padding: var(--space-lg) 0 0;
+    }
+    .testimonial:first-child {
+        border-top: none;
+        padding-top: 0;
+    }
+}
+
+/* =========================================================
+   SECTION: AUTHORITY (Zertifikate)
+   ========================================================= */
+.authority {
+    background: var(--color-bg-alt);
+    padding: var(--space-xxl) 0; /* mehr Luft oben + unten */
+}
+.authority .section-header {
+    text-align: center;
+    margin-bottom: var(--space-xxl); /* mehr Abstand zwischen Headline und Logos */
+}
+.authority h2 {
+    font-size: 34px;
+    font-weight: 500;
+}
+.authority-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* horizontal eng, vertikal mehr Luft */
+    gap: var(--space-lg) 0.6rem;
+    text-align: center;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+.authority-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: transform 0.2s ease;
+    padding: 0.5rem;
+}
+.authority-item:hover {
+    transform: translateY(-3px);
+    text-decoration: none;
+    color: var(--color-text);
+}
+.authority-circle {
+    /* +20% gegenüber v13 (168 → 200 px) */
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    flex-shrink: 0;
+}
+.authority-item:hover .authority-circle {
+    border-color: var(--color-pink);
+    box-shadow: 0 0 0 4px rgba(255, 102, 196, 0.18), var(--shadow-md);
+}
+.authority-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.authority-label {
+    /* +20% gegenüber v13 (0.78 → 0.93 rem) */
+    font-family: var(--font-body);
+    font-size: 0.93rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-text);
+    line-height: 1.45;
+    font-weight: 400;
+}
+@media (max-width: 800px) { .authority-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* =========================================================
+   SECTION: FAQ
+   ========================================================= */
+.faq h2 { margin-bottom: var(--space-lg); }
+.faq-list { max-width: 760px; }
+.faq-item {
+    border-bottom: 1px solid var(--color-border);
+}
+.faq-item summary {
+    padding: var(--space-md) 0;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: var(--space-sm);
+    transition: color 0.15s ease;
+}
+.faq-item summary:hover { color: var(--color-accent-dark); }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+    content: "+";
+    color: var(--color-accent-dark);
+    font-size: 1.7rem;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    font-family: var(--font-body);
+    font-weight: 300;
+}
+.faq-item[open] summary::after { content: "−"; }
+.faq-item .faq-answer {
+    padding: 0 0 var(--space-md);
+    color: var(--color-text);
+    line-height: 1.65;
+}
+.faq-item .faq-answer p { margin-bottom: var(--space-xs); }
+
+/* =========================================================
+   SECTION: CTA-BLOCK
+   ========================================================= */
+.cta-block {
+    background: var(--color-text);
+    color: var(--color-bg);
+    text-align: center;
+    padding: var(--space-xl) 0; /* kompakter — wie auf Sinas Markierung */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cta-block .eyebrow {
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+    display: block;
+}
+.cta-block h2 {
+    color: var(--color-bg);
+    max-width: 720px;
+    margin-left: auto; margin-right: auto;
+    margin-bottom: var(--space-md);
+}
+.cta-block p {
+    color: rgba(236, 230, 227, 0.82);
+    max-width: 580px;
+    margin: 0 auto var(--space-lg);
+    font-size: 1.1rem;
+    line-height: 1.55;
+}
+.cta-block .btn-primary { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-text); }
+.cta-block .btn-primary:hover { background: #FFFFFF; border-color: #FFFFFF; color: var(--color-text); }
+.cta-block .btn-secondary { color: var(--color-bg); border-color: rgba(236, 230, 227, 0.35); }
+.cta-block .btn-secondary:hover { border-color: var(--color-bg); color: var(--color-bg); }
+.cta-block-ctas { display: flex; gap: var(--space-sm); justify-content: center; flex-wrap: wrap; }
+
+/* =========================================================
+   NEWSLETTER mit PDF-Lead-Magnets (Pitch + Roadmap)
+   ========================================================= */
+.newsletter {
+    background: var(--color-bg-alt);
+    padding: var(--space-xl) 0;
+}
+.newsletter-layout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+/* PDF-Cover-Stack mit Schatten — links */
+.newsletter-pdfs {
+    position: relative;
+    width: 280px;
+    height: 320px;
+    flex-shrink: 0;
+}
+.newsletter-pdf-cover {
+    position: absolute;
+    width: 150px;
+    height: 212px;
+    background: var(--color-surface);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(62, 75, 92, 0.12), 0 2px 6px rgba(62, 75, 92, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.newsletter-pdf-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.newsletter-pdf-cover-1 {
+    left: 0; top: 30px;
+    transform: rotate(-6deg);
+    z-index: 2;
+}
+.newsletter-pdf-cover-2 {
+    right: 0; top: 60px;
+    transform: rotate(5deg);
+    z-index: 1;
+}
+.newsletter-pdfs:hover .newsletter-pdf-cover-1 { transform: rotate(-8deg) translateY(-4px); }
+.newsletter-pdfs:hover .newsletter-pdf-cover-2 { transform: rotate(7deg) translateY(-4px); }
+
+.newsletter-content { text-align: left; max-width: 540px; }
+.newsletter-content .eyebrow { color: var(--color-accent-dark); margin-bottom: var(--space-xs); display: block; }
+.newsletter h2 { font-size: 34px; line-height: 1.25; margin-bottom: var(--space-sm); }
+.newsletter p { color: var(--color-text); margin-bottom: var(--space-sm); line-height: 1.55; }
+.newsletter-bonus {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--color-surface);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+.newsletter-bonus strong { color: var(--color-text); }
+.newsletter-form {
+    display: flex; gap: var(--space-xs); max-width: 480px;
+    flex-wrap: wrap;
+}
+.newsletter-form input {
+    flex: 1; min-width: 220px;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--color-surface);
+    color: var(--color-text);
+}
+.newsletter-form input:focus { outline: 2px solid var(--color-accent); outline-offset: -1px; border-color: var(--color-accent); }
+.newsletter-disclaimer { font-size: 0.8rem; color: var(--color-text-muted); margin-top: var(--space-sm); margin-bottom: 0; }
+
+@media (max-width: 800px) {
+    .newsletter-layout { grid-template-columns: 1fr; gap: var(--space-lg); text-align: center; }
+    .newsletter-pdfs { margin: 0 auto; }
+    .newsletter-content { text-align: center; margin: 0 auto; }
+    .newsletter-bonus { text-align: left; }
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer {
+    background: var(--color-text);
+    color: rgba(236, 230, 227, 0.78);
+    padding: var(--space-lg) 0 var(--space-md);
+    font-size: 0.9rem;
+}
+.site-footer a { color: rgba(236, 230, 227, 0.78); }
+.site-footer a:hover { color: var(--color-bg); }
+/* Footer Grid — 4 Spalten nebeneinander: Brand (Logo + Tagline) | Angebote | Kontakt | Folgen */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid rgba(236, 230, 227, 0.12);
+    align-items: start;
+}
+.footer-brand .logo img {
+    height: 72px;
+    width: auto;
+    opacity: 0.95;
+    display: block;
+    margin-bottom: var(--space-md);
+}
+.footer-tagline {
+    color: rgba(236, 230, 227, 0.6);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    max-width: 360px;
+    margin: 0;
+}
+.footer-col h4 {
+    color: var(--color-bg);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: var(--space-sm);
+    font-weight: 500;
+}
+.footer-col ul li { padding: 0.25rem 0; }
+.footer-bottom {
+    padding-top: var(--space-md);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-sm);
+    font-size: 0.8rem;
+    color: rgba(236, 230, 227, 0.5);
+}
+
+@media (max-width: 1000px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+    .footer-brand { grid-column: 1 / -1; }
+    .footer-brand .logo img { height: 64px; }
+}
+@media (max-width: 500px) {
+    .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   PROTOTYP-BANNER
+   ========================================================= */
+.proto-banner {
+    background: var(--color-text);
+    color: var(--color-bg);
+    text-align: center;
+    padding: 0.5rem var(--space-md);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+}
+.proto-banner strong { color: var(--color-accent); }
+
+/* =========================================================
+   ÜBER-MICH-SEITE — Zusatz-Styles (v49)
+   ========================================================= */
+
+/* Hero MIT Foto: Text bleibt EXAKT mittig (über Meine-Reise-Headline), Foto schwebt nach rechts */
+.hero.hero-about {
+    overflow: visible !important;     /* damit Foto rechts aus dem Container ragen darf */
+    min-height: 620px;
+    padding: var(--space-lg) 0;
+    position: relative;
+}
+.hero-about .hero-container {
+    max-width: var(--container-w);    /* 1180 — identisch mit Meine-Reise-Container drunter */
+    margin: 0 auto;                   /* ← FEHLTE! Ohne das klebte der Container links am Viewport */
+    padding: 0 var(--space-md);
+    position: relative;
+}
+.hero-about .hero-content {
+    max-width: 480px;
+    margin-left: auto !important;
+    margin-right: auto !important;     /* Text 100% mittig — egal was sonst passiert */
+    text-align: center;
+}
+.hero-about .hero-ctas {
+    justify-content: center;
+}
+.hero-about h1 {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+}
+.hero-about h1 em {
+    color: var(--color-pink);      /* pink — konsistent mit SISU-Seite und Startseite */
+}
+.hero-about::before,
+.hero-about::after,
+.hero-about .hero-photo,
+.hero-about .hero-image-wrap { display: none !important; }
+
+/* Rundes Foto: positioniert relativ zur BROWSER-MITTE, schwebt nach rechts */
+.hero-about-image {
+    position: absolute;
+    /* Browser-Mitte (50%) + 320 px Abstand → Foto-Links-Rand */
+    left: calc(50% + 460px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 504px;                      /* 20% größer als zuvor (420 → 504) */
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(62, 75, 92, 0.04);
+}
+.hero-about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+@media (max-width: 1500px) {
+    .hero-about-image { width: 420px; left: calc(50% + 400px); }
+}
+@media (max-width: 1300px) {
+    .hero-about-image { width: 340px; left: calc(50% + 360px); }
+}
+@media (max-width: 1100px) {
+    .hero-about-image { width: 280px; left: calc(50% + 320px); }
+}
+@media (max-width: 900px) {
+    .hero.hero-about { min-height: auto; }
+    .hero-about-image {
+        position: static;
+        transform: none;
+        left: auto;
+        margin: 0 auto var(--space-md);
+        width: 280px;
+    }
+}
+
+/* "Meine Reise" — Hauptsektion mit 4 Phasen */
+.reise {
+    background: var(--color-bg);
+    padding: var(--space-xxl) 0;
+}
+.reise-intro {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+.reise-intro .eyebrow {
+    display: block;
+    margin-bottom: var(--space-sm);
+}
+.reise-intro h2 {
+    font-size: 34px;
+    line-height: 1.25;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+/* Mini-Timeline: Icon-Spalte links (Linie + Kreise mit Icons), Inhalt rechts */
+.reise-phase {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+    padding: var(--space-md) 0;
+    position: relative;
+}
+
+/* Stopppunkt — größerer Punkt in der Mitte jeder Phase auf der Linie */
+.reise-phase::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 45px;                /* Center der Icon-Spalte (90/2) */
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent-dark);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+/* Phase 4 (Heute · SISU): Mid-Point bleibt sichtbar — als Schlusspunkt der Reise.
+   Die Linie endet bei dieser Phase bei top:50%, der Mid-Point sitzt dort als End-Marker. */
+/* (kein display: none mehr — vorher war hier ausgeblendet) */
+
+/* Decor: Punkte nach oben und nach rechts vom ersten Icon (Auge).
+   Positioniert RELATIV ZUM .reise-icon (60×60), NICHT zur icon-col. */
+.reise-decor-up,
+.reise-decor-right {
+    position: absolute;
+    color: var(--color-accent-dark);
+    pointer-events: none;
+}
+.reise-decor-up {
+    bottom: 100%;              /* direkt ÜBER dem Icon-Rand */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 100px;             /* länger — präsenter (von 68 → 100 px) */
+    margin-bottom: 6px;
+}
+.reise-decor-right {
+    left: 100%;                /* direkt RECHTS vom Icon-Rand */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100px;
+    height: 20px;
+    margin-left: 6px;
+}
+.reise-icon-col {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 0.5rem;
+    min-height: 100%;
+}
+/* Gestrichelte vertikale Linie zwischen den Icons */
+.reise-icon-col::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: -100%;       /* reicht in die nächste Phase rein */
+    border-left: 2px dotted var(--color-accent-dark);
+    transform: translateX(-50%);
+    z-index: 0;
+}
+.reise-phase:first-child .reise-icon-col::before {
+    top: 50%;            /* Linie startet erst unter dem Icon der ersten Phase */
+}
+.reise-phase:last-child .reise-icon-col::before {
+    bottom: 50%;         /* Linie endet vor dem Icon der letzten Phase */
+}
+.reise-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-bg);
+    border: 1.5px dashed var(--color-accent-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent-dark);
+    z-index: 1;
+    position: relative;
+    flex-shrink: 0;
+}
+.reise-icon svg {
+    width: 24px;
+    height: 24px;
+}
+.reise-content { padding-bottom: var(--space-md); }
+.reise-phase-marker {
+    display: block;
+    font-family: 'DM Serif Display', var(--font-display);
+    font-style: italic;
+    font-size: clamp(2.8rem, 4vw, 3.8rem);
+    color: var(--color-pink);
+    line-height: 0.9;
+    margin-bottom: var(--space-sm);
+    font-weight: 400;
+}
+.reise-phase h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0 0 var(--space-md);
+    line-height: 1.25;
+}
+.reise-phase p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0 0 var(--space-sm);
+}
+.reise-phase p:last-child { margin-bottom: 0; }
+.reise-phase strong { font-weight: 600; color: var(--color-text); }
+
+/* Mobile: Timeline kompakter, Icon kleiner, Linie näher */
+@media (max-width: 600px) {
+    .reise-phase {
+        grid-template-columns: 56px 1fr;
+        gap: var(--space-md);
+    }
+    .reise-icon {
+        width: 44px;
+        height: 44px;
+    }
+    .reise-icon svg { width: 18px; height: 18px; }
+}
+
+/* Eigene Studie v60 — Vollhöhe-Bild links (edge-to-edge), Text rechts.
+   Beige Hintergrund (matched Meine Reise oben), Stats nur durch vertikale Striche getrennt. */
+.own-research {
+    background: var(--color-bg);          /* beige — gleicher Ton wie „Meine Reise" oben */
+    color: var(--color-text);
+    padding: 0;
+    overflow: hidden;
+}
+.own-research-layout {
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr) 1.5fr;
+    gap: 0;
+    align-items: stretch;
+}
+.own-research-image {
+    position: relative;
+    background: rgba(62, 75, 92, 0.04);
+    min-height: 100%;
+    overflow: hidden;
+}
+.own-research-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+.own-research-content {
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;     /* statt center — damit Meta mit margin-top:auto unten andocken kann */
+    max-width: 760px;
+}
+.own-research-content .eyebrow {
+    display: block;
+    color: var(--color-accent-dark);             /* Gold-dunkel auf hell besser lesbar */
+    margin-bottom: var(--space-sm);
+}
+.own-research-content h2 {
+    color: var(--color-text);
+    font-size: 34px;
+    line-height: 1.25;
+    margin: 0 0 var(--space-md);
+    max-width: 600px;
+}
+.own-research-lead {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--color-text);
+    margin: 0 0 var(--space-lg);
+    max-width: 600px;
+}
+.own-research-lead strong {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+/* Stats: KEIN Card-Container — nur 3 Spalten mit vertikalen Trennstrichen */
+.own-research-stats {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: var(--space-md) 0 var(--space-lg);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);   /* von md → lg: mehr Abstand zur Quellenangabe drunter */
+    max-width: 640px;
+}
+.own-research-stat {
+    text-align: center;
+    border-right: 1px solid var(--color-border);  /* silberner Strich, passt zu hell */
+    padding: 0 var(--space-sm);
+}
+.own-research-stat:last-child {
+    border-right: none;
+}
+.own-research-stat-num {
+    font-family: 'DM Serif Display', var(--font-display);
+    font-style: italic;
+    font-size: 5.4rem !important;   /* nochmal +20% (von 4.5 → 5.4 rem) */
+    font-weight: 400;
+    color: var(--color-pink);
+    line-height: 1.05;
+    margin-bottom: var(--space-md);  /* mehr Atmung zur Linie + Label */
+}
+.own-research-stat-divider {
+    display: block;
+    width: 30px;                /* Linie etwas breiter passt zur größeren Schrift */
+    height: 1px;
+    background: var(--color-accent-dark);
+    margin: 0 auto var(--space-md);  /* mehr Atmung zum Label */
+}
+.own-research-stat-label {
+    font-size: 1.2rem;          /* +20% (1 → 1.2 rem) */
+    line-height: 1.7;           /* mehr Atmung zwischen Zeilen */
+    color: var(--color-text);
+}
+.own-research-meta {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    text-align: left;
+    margin: 0;
+    margin-top: auto;            /* drückt die Meta ans untere Ende der Spalte */
+    padding-top: var(--space-lg); /* + sichtbarer Abstand zu den Stats drüber */
+    max-width: 640px;
+}
+
+@media (max-width: 900px) {
+    .own-research-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    .own-research-image {
+        min-height: auto;
+        aspect-ratio: 1 / 1;
+    }
+    .own-research-content {
+        padding: var(--space-lg) var(--space-md);
+    }
+    .own-research-stats {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    .own-research-stat {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: var(--space-md);
+    }
+    .own-research-stat:last-child { border-bottom: none; padding-bottom: 0; }
+}
+
+/* =========================================================
+   FÜR-UNTERNEHMEN-SEITE — Sektionen-Styles (v88)
+   ========================================================= */
+
+/* HERO (zentriert, ohne Foto) — hellgrau, damit sich Hero und Pillars-Section (beige) unterscheiden */
+.fu-hero {
+    background: var(--color-bg-alt);
+    padding: var(--space-xl) 0 var(--space-lg);
+    text-align: center;
+}
+.fu-hero .eyebrow {
+    display: block;
+    margin-bottom: var(--space-sm);
+}
+.fu-hero h1 {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    max-width: 800px;
+    margin: 0 auto var(--space-md);
+}
+.fu-hero h1 em {
+    font-style: italic;
+    color: var(--color-pink);
+}
+.fu-hero-lead {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--color-text);
+    max-width: 640px;
+    margin: 0 auto var(--space-lg);
+}
+.fu-hero-ctas {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* DREI SÄULEN — Strich-getrennte Spalten mit Icons (analog SISU-Seite) */
+.fu-pillars {
+    padding: var(--space-xl) 0;
+}
+.fu-pillars-intro {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.fu-pillars-intro h2 {
+    font-size: 34px;  /* zentriert wirkt sonst zu wuchtig vs. linksbündig fu-problem */
+    line-height: 1.25;
+    margin: 0;
+}
+.fu-pillars-intro h2 em {
+    font-style: italic;
+    color: var(--color-pink);
+}
+.fu-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    align-items: stretch;
+}
+.fu-pillar {
+    padding: 0 var(--space-md);
+    text-align: center;
+    border-left: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.fu-pillar:first-child { border-left: none; }
+.fu-pillar-icon {
+    width: 64px;
+    height: 64px;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-md);
+    color: var(--color-pink);
+}
+.fu-pillar-icon svg {
+    width: 28px;
+    height: 28px;
+}
+.fu-pillar h3 {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-md);
+    min-height: 2.4em;
+}
+.fu-pillar p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text);
+    margin: 0;
+    text-align: left;
+}
+@media (max-width: 900px) {
+    .fu-pillars-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+    .fu-pillar {
+        border-left: none;
+        border-top: 1px solid var(--color-border);
+        padding: var(--space-md) 0;
+    }
+    .fu-pillar:first-child { border-top: none; padding-top: 0; }
+    .fu-pillar h3 { min-height: 0; }
+}
+
+/* STAT-STREIFEN — 4 große Pink-Italic-Zahlen */
+.fu-stats {
+    padding: var(--space-xl) 0;
+}
+.fu-stats-intro {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.fu-stats-intro h2 {
+    font-size: 34px;
+    line-height: 1.25;
+    margin: 0;
+}
+.fu-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+}
+.fu-stat {
+    text-align: center;
+    padding: var(--space-md) var(--space-sm);
+    border-right: 1px solid var(--color-border);
+}
+.fu-stat:last-child { border-right: none; }
+.fu-stat-num {
+    font-family: 'DM Serif Display', var(--font-display);
+    font-style: italic;
+    font-size: clamp(2.4rem, 3.6vw, 3.4rem);
+    font-weight: 400;
+    color: var(--color-pink);
+    line-height: 1;
+    margin-bottom: var(--space-sm);
+}
+.fu-stat-divider {
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--color-accent-dark);
+    margin: 0 auto var(--space-sm);
+}
+.fu-stat-label {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+}
+.fu-stat-source {
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+}
+@media (max-width: 1000px) {
+    .fu-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .fu-stat:nth-child(2) { border-right: none; }
+    .fu-stat:nth-child(1), .fu-stat:nth-child(2) { border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-lg); }
+}
+@media (max-width: 600px) {
+    .fu-stats-grid { grid-template-columns: 1fr; }
+    .fu-stat { border-right: none; border-bottom: 1px solid var(--color-border); }
+    .fu-stat:last-child { border-bottom: none; }
+}
+
+/* PROBLEM — 2-Spalten: Bild links, Text rechts */
+.fu-problem {
+    background: var(--color-bg);
+    padding: 0;
+    overflow: hidden;
+}
+.fu-problem-layout {
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr) 1.4fr;
+    gap: 0;
+    align-items: stretch;
+}
+.fu-problem-image {
+    position: relative;
+    min-height: 100%;
+    overflow: hidden;
+    background: var(--color-bg-alt);
+}
+.fu-problem-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+.fu-problem-content {
+    padding: var(--space-xl) var(--space-xl);
+    max-width: 760px;
+}
+.fu-problem-content .eyebrow {
+    display: block;
+    margin-bottom: var(--space-sm);
+}
+.fu-problem-content h2 {
+    font-size: 34px;
+    line-height: 1.25;
+    margin: 0 0 var(--space-lg);
+}
+.fu-problem-content h2 em {
+    font-style: italic;
+    color: var(--color-pink);
+}
+.fu-problem-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+}
+.fu-problem-content p strong { font-weight: 600; }
+.fu-problem-list-intro {
+    margin-bottom: var(--space-xs) !important;
+}
+.fu-problem-list {
+    list-style: disc;
+    padding-left: var(--space-md);
+    margin: 0 0 var(--space-md);
+}
+.fu-problem-list li {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    padding: 0.25rem 0;
+}
+.fu-problem-emphasis {
+    padding: var(--space-md);
+    background: var(--color-bg-alt);
+    border-left: 3px solid var(--color-pink);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin-top: var(--space-md) !important;
+    font-size: 1rem;
+    line-height: 1.65;
+}
+@media (max-width: 900px) {
+    .fu-problem-layout { grid-template-columns: 1fr; }
+    .fu-problem-image { aspect-ratio: 4 / 3; min-height: auto; }
+    .fu-problem-content { padding: var(--space-lg) var(--space-md); }
+}
+
+/* WAS UNTERNEHMEN GEWINNEN — 2×3 Grid mit großen schwebenden Zahlen */
+.fu-gains {
+    padding: var(--space-xl) 0 var(--space-xl);
+}
+.fu-gains-intro {
+    text-align: center;
+    margin-bottom: var(--space-xxl);            /* mehr Raum für die schwebenden Zahlen drunter */
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.fu-gains-intro h2 {
+    font-size: 34px;
+    line-height: 1.25;
+    margin: 0;
+}
+.fu-gains-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: var(--space-xxl);
+    column-gap: var(--space-md);
+    max-width: 90%;                              /* Grid 10 % schmaler → Karten 10 % weniger Breite */
+    margin: 0 auto;
+}
+.fu-gain {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    /* padding ~10 % reduziert für Höhe-Reduktion */
+    padding: calc(2.5rem + var(--space-md)) calc(var(--space-md) * 0.9) calc(var(--space-md) * 0.9);
+    text-align: center;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+.fu-gain:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+}
+/* SCHWEBENDE Zahl — halb außerhalb / halb innerhalb, mittig zentriert auf Karten-Top */
+.fu-gain-num {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'DM Serif Display', var(--font-display);
+    font-style: italic;
+    font-size: clamp(6rem, 8.25vw, 8.25rem);    /* +50%: von 4–5.5 rem auf 6–8.25 rem */
+    color: var(--color-pink);
+    line-height: 1;
+    margin: 0;
+    z-index: 2;
+}
+/* Headline in Caps + Bold (Jost) — wie auf Startseite „RETENTION & BINDUNG" */
+.fu-gain h3 {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-md);
+    line-height: 1.3;
+    min-height: 2.3em;
+}
+/* Dekorative 5-Punkte-Linie zwischen Headline und Body */
+.fu-gain h3::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 5px;
+    margin: var(--space-sm) auto 0;
+    background-image: radial-gradient(circle, var(--color-pink) 1.5px, transparent 1.5px);
+    background-size: 12px 5px;
+    background-repeat: repeat-x;
+}
+.fu-gain p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin: 0;
+    flex-grow: 1;                  /* Body füllt Karten-Rest → alle Karten gleich hoch */
+}
+@media (max-width: 900px) {
+    .fu-gains-grid {
+        grid-template-columns: 1fr 1fr;
+        row-gap: var(--space-xl);
+    }
+}
+@media (max-width: 600px) {
+    .fu-gains-grid { grid-template-columns: 1fr; }
+}
+
+/* WAS SISU BIETET (Closing) */
+.fu-offer {
+    padding: var(--space-xl) 0;
+    text-align: center;
+    background: var(--color-bg);
+}
+.fu-offer .eyebrow {
+    display: block;
+    margin-bottom: var(--space-sm);
+}
+.fu-offer h2 {
+    font-size: 34px;
+    line-height: 1.25;
+    margin: 0 auto var(--space-lg);
+    max-width: 700px;
+}
+.fu-offer-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0 auto var(--space-xl);
+    max-width: 680px;
+}
+.fu-offer-text strong { font-weight: 600; }
+.fu-offer-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    line-height: 1.4;
+    color: var(--color-text);
+    max-width: 680px;
+    margin: 0 auto;
+    border: none;
+    padding: 0;
+}
+.fu-offer-quote em {
+    font-style: italic;
+    color: var(--color-pink);
+}
+
+/* CTA-Block hellgrau (statt dunkelblau) — Dunkelblau nur für Footer */
+.cta-block.cta-block-light {
+    background: var(--color-bg-alt);
+    color: var(--color-text);
+    padding: var(--space-xl) 0;
+}
+.cta-block.cta-block-light .eyebrow { color: var(--color-accent-dark); }
+.cta-block.cta-block-light h2 {
+    color: var(--color-text);
+    font-size: 34px;
+}
+.cta-block.cta-block-light p { color: var(--color-text); }
+.cta-block.cta-block-light .btn-primary {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #FFFFFF;
+}
+.cta-block.cta-block-light .btn-primary:hover {
+    background: var(--color-accent-dark);
+    border-color: var(--color-accent-dark);
+    color: #FFFFFF;
+}
+
+/* =========================================================
+   PROZESS-PATTERN (übernommen von Startseite — Tropfen + Pfeil)
+   ========================================================= */
+.process h2 {
+    font-size: 34px;   /* zentriert leicht reduziert */
+    line-height: 1.25;
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+.process-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    max-width: 880px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.process-step {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    align-items: center;
+    gap: 0;
+}
+/* Tropfenform — farbiger Kreis mit Schwanz nach rechts */
+.process-drop {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    z-index: 2;
+}
+.process-drop::before {
+    /* Außenform: farbiger Kreis */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--drop-color, var(--color-pink));
+    border-radius: 50%;
+    z-index: 1;
+}
+.process-drop::after {
+    /* Spitzer Schwanz nach rechts — gleiche Farbe wie der Kreis */
+    content: "";
+    position: absolute;
+    right: -55px;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-top: 45px solid transparent;
+    border-bottom: 45px solid transparent;
+    border-left: 70px solid var(--drop-color, var(--color-pink));
+    transform: translateY(-50%);
+    z-index: 1;
+}
+/* Innen weißer Kreis mit Number */
+.process-drop-inner {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    background: var(--color-surface);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+.process-num {
+    font-family: 'DM Serif Display', var(--font-display);
+    font-style: italic;
+    font-size: 3.4rem;
+    font-weight: 400;
+    color: var(--color-text);
+    line-height: 1;
+}
+/* Farb-Abstufung Tropfen — 4-Stufen-Variante (für Workshop-Ziele) */
+.process-drop-1 { --drop-color: #FCDFDD; }  /* zart Rosa */
+.process-drop-2 { --drop-color: #FEC4DC; }  /* leichtes Rosa */
+.process-drop-3 { --drop-color: #FEA2D0; }  /* mittlere Pink-Tönung */
+.process-drop-4 { --drop-color: #FF66C4; }  /* SISU-Pink-Akzent */
+
+.process-text {
+    background: var(--color-bg-alt);
+    padding: var(--space-md) var(--space-lg);
+    margin-left: 24px; /* fügt den Tropfen-Schwanz visuell in den Text-Block ein */
+    border-radius: var(--radius);
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.process-text h3 {
+    /* Auf coaching.html: angepasst an fu-pillar / fu-gain Card-Überschriften (Jost Sans, klein, gespaced) */
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+}
+.process-text p {
+    color: var(--color-text);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+    .process-step {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: var(--space-md);
+    }
+    .process-drop::after { display: none; }
+    .process-text {
+        margin-left: 0;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   WORKSHOPS & VORTRÄGE — Zusatz-Styles (v1)
+   ========================================================= */
+
+/* Großer Lead-Paragraph im Intro über den Themen-Cards */
+.fu-pillars-intro .co-lead {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    max-width: 760px;
+    margin: var(--space-md) auto 0;
+    text-align: center;
+}
+.fu-pillars-intro .co-lead strong {
+    font-weight: 600;
+}
+
+/* Sub-Eyebrow zwischen Lead und Grid: "Typische Themen" / "Thematische Schwerpunkte" */
+.co-eyebrow-sub {
+    display: block;
+    margin-top: var(--space-xl);
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-accent-dark);
+}
+
+/* Themen-Grid: 3 Spalten × 2 Reihen für 6 Themen — saubere Strich-Logik */
+.co-themes-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    row-gap: var(--space-xxl);
+    column-gap: 0;
+    margin-top: var(--space-md);
+}
+/* Erste Spalte jeder Reihe: kein linker Strich (überschreibt fu-pillar default) */
+.co-themes-grid .fu-pillar:nth-child(3n+1) {
+    border-left: none;
+    padding-left: 0;
+}
+@media (max-width: 1100px) {
+    .co-themes-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        row-gap: var(--space-xl);
+    }
+    .co-themes-grid .fu-pillar:nth-child(3n+1) {
+        border-left: 1px solid var(--color-border);
+        padding-left: var(--space-md);
+    }
+    .co-themes-grid .fu-pillar:nth-child(odd) {
+        border-left: none;
+        padding-left: 0;
+    }
+}
+@media (max-width: 600px) {
+    .co-themes-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .co-themes-grid .fu-pillar,
+    .co-themes-grid .fu-pillar:nth-child(odd),
+    .co-themes-grid .fu-pillar:nth-child(3n+1) {
+        border-left: none;
+        border-top: 1px solid var(--color-border);
+        padding: var(--space-md) 0;
+    }
+    .co-themes-grid .fu-pillar:first-child {
+        border-top: none;
+        padding-top: 0;
+    }
+}
+
+/* Closing-Paragraph nach den Themen-Cards */
+.co-section-closing {
+    margin-top: var(--space-xl);
+    text-align: center;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--color-text);
+}
+.co-section-closing strong { font-weight: 600; }
+
+/* Workshop-Ziele Grid — übernimmt process-grid defaults (vertikales 1-Spalten-Layout) */
+.co-ziele-grid {
+    /* Default des process-grid passt schon — keine Override nötig */
+}
+
+/* Formate-Sub-Block (im Vorträge-Abschnitt unten, mit Häkchen-Liste) */
+.co-formate {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.co-formate .eyebrow {
+    display: block;
+    margin-bottom: var(--space-md);
+}
+.co-formate-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: left;
+    max-width: 620px;
+    margin: 0 auto;
+}
+.co-formate-list li {
+    position: relative;
+    padding: 0.4rem 0 0.4rem 2rem;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--color-text);
+}
+.co-formate-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 14px;
+    height: 14px;
+    background-image: radial-gradient(circle, var(--color-pink) 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1.5px solid var(--color-pink);
+    border-radius: 50%;
+}
+.co-formate-list li strong {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+/* CTA-Headline: Pink-Italic-Akzent für *Veränderung* */
+.cta-block-light h2 em {
+    font-style: italic;
+    color: var(--color-pink);
+}
+
+/* =========================================================
+   COACHING-SEITE — Zusatz-Styles (v1)
+   ========================================================= */
+
+/* Anlässe-Grid → 4 Spalten (override fu-pillars-grid default 3) */
+.co-anlaesse-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+}
+@media (max-width: 1100px) {
+    .co-anlaesse-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        row-gap: var(--space-lg);
+    }
+    .co-anlaesse-grid .fu-pillar:nth-child(odd) {
+        border-left: none;
+        padding-left: 0;
+    }
+    .co-anlaesse-grid .fu-pillar:nth-child(even) {
+        border-left: 1px solid var(--color-border);
+    }
+}
+@media (max-width: 600px) {
+    .co-anlaesse-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .co-anlaesse-grid .fu-pillar,
+    .co-anlaesse-grid .fu-pillar:nth-child(odd),
+    .co-anlaesse-grid .fu-pillar:nth-child(even) {
+        border-left: none;
+        border-top: 1px solid var(--color-border);
+        padding: var(--space-md) 0;
+    }
+    .co-anlaesse-grid .fu-pillar:first-child {
+        border-top: none;
+        padding-top: 0;
+    }
+}
+
+/* "Was erhalten Mitarbeitende"-Grid → 4 Spalten (override fu-gains-grid 3) */
+.co-erhalten-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+}
+@media (max-width: 1100px) {
+    .co-erhalten-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+@media (max-width: 600px) {
+    .co-erhalten-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Paket-Hinweis (Unterzeile unter den 4 Erhalten-Karten) — eng an Cards, symmetrisch zum Section-Top */
+.co-package-note {
+    margin-top: var(--space-lg);
+    text-align: center;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--color-text);
+}
+.co-package-note strong {
+    font-weight: 600;
+}
+
+/* Ziel-Statement (unter dem Mehrwert-Grid in derselben Sektion) */
+.co-ziel {
+    margin-top: var(--space-xxl);
+    text-align: center;
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.co-ziel .eyebrow {
+    display: block;
+    margin-bottom: var(--space-md);
+}
+.co-ziel blockquote {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.4vw, 1.95rem);
+    line-height: 1.4;
+    color: var(--color-text);
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+.co-ziel blockquote em {
+    font-style: italic;
+    color: var(--color-pink);
+}
+
+/* Mehrwert-Grid bleibt bei 3 Spalten (fu-gains-grid default) — kein Override nötig */
+
+/* BANNER unten (durchlaufend) — entfernt in v89, CSS bleibt für späteren Bedarf */
+.fu-banner {
+    overflow: hidden;
+    padding: var(--space-md) 0;
+    background: var(--color-bg);
+}
+.fu-banner-track {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker-scroll 120s linear infinite;
+    width: max-content;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+}
+.fu-banner-track span {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(3.5rem, 6.5vw, 5.8rem);
+    color: var(--color-accent-light);
+    line-height: 1;
+    flex-shrink: 0;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+@media (prefers-reduced-motion: reduce) {
+    .fu-banner-track { animation: none; }
+}
+
+/* =========================================================
+   COOKIE-CONSENT-BANNER (SISU-Variante, bottom fixed)
+   ========================================================= */
+.cookie-banner {
+    position: fixed;
+    left: 50%;
+    bottom: var(--space-md);
+    transform: translateX(-50%);
+    z-index: 100;
+    width: calc(100% - 2 * var(--space-md));
+    max-width: 1100px;
+    background: var(--color-text);                /* SISU-Dunkelblau #3E4B5C */
+    color: var(--color-bg);                       /* Beige Schrift */
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 12px 32px rgba(62, 75, 92, 0.22), 0 4px 8px rgba(62, 75, 92, 0.12);
+    display: none;                                /* default versteckt, JS zeigt es */
+    align-items: center;
+    gap: var(--space-lg);
+    font-family: var(--font-body);
+    line-height: 1.55;
+}
+.cookie-banner.is-visible {
+    display: flex;
+    animation: cookie-slide-up 0.4s ease-out;
+}
+@keyframes cookie-slide-up {
+    from { opacity: 0; transform: translate(-50%, 20px); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
+}
+.cookie-banner-content {
+    flex: 1;
+    min-width: 0;
+}
+.cookie-banner h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-bg);
+    margin: 0 0 0.4rem;
+    letter-spacing: 0;
+    text-transform: none;
+}
+.cookie-banner p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: rgba(236, 230, 227, 0.85);
+}
+.cookie-banner a {
+    color: var(--color-accent);                   /* Gold-Akzent für Links */
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.cookie-banner a:hover {
+    color: var(--color-bg);
+}
+.cookie-banner-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+}
+.cookie-banner button {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 0.7rem 1.4rem;
+    border-radius: var(--radius);
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+}
+.cookie-banner .cookie-btn-reject {
+    background: transparent;
+    color: var(--color-bg);
+    border-color: rgba(236, 230, 227, 0.35);
+}
+.cookie-banner .cookie-btn-reject:hover {
+    border-color: var(--color-bg);
+    background: rgba(236, 230, 227, 0.08);
+}
+.cookie-banner .cookie-btn-accept {
+    background: var(--color-accent);              /* Gold */
+    color: var(--color-text);
+    border-color: var(--color-accent);
+}
+.cookie-banner .cookie-btn-accept:hover {
+    background: #FFFFFF;
+    border-color: #FFFFFF;
+    color: var(--color-text);
+}
+
+/* Mobile: vertikales Layout, voller Breite */
+@media (max-width: 800px) {
+    .cookie-banner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-md);
+        padding: var(--space-md);
+        bottom: var(--space-sm);
+        width: calc(100% - 2 * var(--space-sm));
+    }
+    .cookie-banner-actions {
+        justify-content: flex-end;
+    }
+    .cookie-banner button {
+        flex: 1;
+    }
+}
+
+/* Ausnahme: linksbündige H2 in 2-Spalten-Layouts (Bild + Text nebeneinander) */
+main section.fu-problem h2,
+main section .fu-problem-content h2 {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+/* H2 in Legal-Seiten (Sub-Sections) NICHT zentrieren (sind viele H2 in Fließtext) */
+main section .legal-content h2 {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: none !important;
+}
+
+
+/* =========================================================
+   FINAL H2 UNIFIER (RADIKAL) — feste 28px Schriftgröße
+   für ALLE Section-H2 auf allen Seiten. Kein clamp(), keine 
+   responsiven Berechnungen, keine Unterschiede.
+   ========================================================= */
+html body main section h2,
+html body main h2 {
+    font-size: 34px !important;
+    line-height: 1.25 !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    letter-spacing: -0.005em !important;
+    font-family: var(--font-display) !important;
+    color: var(--color-text) !important;
+    max-width: 820px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+}
+/* Ausnahmen für linksbündige Layouts (2-Spalten mit Bild) */
+html body main section.fu-problem h2,
+html body main section .fu-problem-content h2,
+html body main section .legal-content h2 {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+html body main section .legal-content h2 {
+    max-width: none !important;
+}
+
+</style>
+</head>
+<body>
+
+<div class="proto-banner">
+    <strong>VORSCHAU-MOCKUP v1</strong> — Workshops &amp; Vorträge · 5 Sektionen mit Pink-Italic-Akzenten · Workshop-Themen + Tropfen-Ziele + Vortrags-Themen + Formate
+</div>
+
+<header class="site-header">
+    <nav class="nav">
+        <a href="index.html" class="logo" aria-label="SISU — Fertility & Mental Health">
+            <img src="assets/sisu-logo-header.png" alt="SISU">
+        </a>
+        <ul class="nav-links">
+            <li><a href="fuer-unternehmen.html">Für Unternehmen</a></li>
+            <li><a href="coaching.html">1:1-Coaching</a></li>
+            <li><a href="workshops-vortraege.html" aria-current="page">Workshops &amp; Vorträge</a></li>
+            <li><a href="ueber-mich.html">Über mich</a></li>
+            <li><a href="sisu.html">SISU</a></li>
+        </ul>
+        <a href="#kontakt" class="btn btn-primary btn-small">Erstgespräch</a>
+        <button class="nav-toggle" aria-label="Menü öffnen">☰</button>
+    </nav>
+</header>
+
+<main>
+
+<!-- ===================== HERO (Text zentriert + rundes Foto rechts — wie Über-mich) ===================== -->
+<section class="hero hero-about">
+    <div class="hero-container">
+        <div class="hero-content">
+            <span class="eyebrow">Workshops &amp; Vorträge</span>
+            <h1>Impulse, die wirken — für <em>mentale Gesundheit</em> am Arbeitsplatz.</h1>
+            <p class="hero-lead">
+                Manche Themen brauchen mehr als einen Impuls — sie brauchen Raum. Andere brauchen einen kraftvollen Anstoß, der Menschen bewegt. Beides bringe ich in Ihr Unternehmen.
+            </p>
+            <div class="hero-ctas">
+                <a href="#kontakt" class="btn btn-primary">30 Minuten Erstgespräch</a>
+                <a href="#workshops" class="btn btn-secondary">Themen ansehen</a>
+            </div>
+        </div>
+        <!-- Rundes Foto rechts: Sina im Workshop am Whiteboard -->
+        <div class="hero-about-image">
+            <img src="assets/workshop-rund.png" alt="Sina Valkonen leitet einen Workshop am Whiteboard zum Thema mentale Stärke">
+        </div>
+    </div>
+</section>
+
+<!-- ===================== WORKSHOPS (Intro + 6 Themen-Pillars) ===================== -->
+<section class="fu-pillars co-workshops" id="workshops">
+    <div class="container">
+        <div class="fu-pillars-intro">
+            <span class="eyebrow">Format 1 · Workshops</span>
+            <h2>Praxisorientierte Workshops für mehr Klarheit, Resilienz und mentale Stärke.</h2>
+            <p class="co-lead">In meinen Workshops tauchen wir gemeinsam tiefer ein — in mentale Prozesse, innere Blockaden und äußere Herausforderungen, die den Berufsalltag prägen. Die Inhalte werden individuell auf Ihre Zielgruppe abgestimmt: <strong>fachlich fundiert, praxisnah und alltagstauglich</strong>.</p>
+            <p class="co-eyebrow-sub">Typische Themen</p>
+        </div>
+        <div class="fu-pillars-grid co-themes-grid">
+            <article class="fu-pillar">
+                <div class="fu-pillar-icon" aria-hidden="true">
+                    <!-- Herz mit Hand — Selbstfürsorge -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+                <h3>Mentale Gesundheit &amp; Selbstfürsorge</h3>
+                <p>Wie wir innere Ressourcen schützen, bevor sie aufgebraucht sind. Mit konkreten Übungen für mehr Achtsamkeit, Selbstmitgefühl und Energiebalance im Alltag.</p>
+            </article>
+
+            <article class="fu-pillar">
+                <div class="fu-pillar-icon" aria-hidden="true">
+                    <!-- Pflanzentrieb — Kinderwunsch & Karriere -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22 V10"/>
+                        <path d="M12 10 C 6 10, 4 6, 5 3 C 9 3, 12 6, 12 10 Z"/>
+                        <path d="M12 14 C 17 14, 19 11, 18.5 8 C 15 8, 12 11, 12 14"/>
+                    </svg>
+                </div>
+                <h3>Kinderwunsch &amp; Karriere</h3>
+                <p>Was Unternehmen wissen sollten — und wie sich Mitarbeitende in dieser sensiblen Phase wirklich unterstützt fühlen. Mit Zahlen, Stimmen und praktischen Handlungsansätzen.</p>
+            </article>
+
+            <article class="fu-pillar">
+                <div class="fu-pillar-icon" aria-hidden="true">
+                    <!-- Schild — Resilienz -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2 L4 5 v6 c0 5 3.5 9 8 11 4.5-2 8-6 8-11 V5 z"/>
+                        <path d="M9 12 l2 2 l4-4"/>
+                    </svg>
+                </div>
+                <h3>Resilienz im Arbeitskontext</h3>
+                <p>Wie Teams und Einzelne lernen, mit Druck, Veränderung und Rückschlägen umzugehen — ohne sich aufzureiben. Resilienz als trainierbare Kompetenz, nicht als Charakterzug.</p>
+            </article>
+
+            <article class="fu-pillar">
+                <div class="fu-pillar-icon" aria-hidden="true">
+                    <!-- Konzentrische Kreise + Blitz — Stress -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="9"/>
+                        <circle cx="12" cy="12" r="5"/>
+                        <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+                        <path d="M21 3 L17 8"/>
+                    </svg>
+                </div>
+                <h3>Stressoren erkennen &amp; regulieren</h3>
+                <p>Wo Stress wirklich entsteht — und wie wir ihn früh erkennen, einordnen und nachhaltig regulieren. Mit Werkzeugen für Akut- und Dauerstress.</p>
+            </article>
+
+            <article class="fu-pillar">
+                <div class="fu-pillar-icon" aria-hidden="true">
+                    <!-- Geschichtete Blätter — Mental Load (unsichtbar sichtbar) -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="14" height="14" rx="1"/>
+                        <rect x="7" y="7" width="14" height="14" rx="1"/>
+                        <line x1="10" y1="11" x2="17" y2="11"/>
+                        <line x1="10" y1="15" x2="17" y2="15"/>
+                    </svg>
+                </div>
+                <h3>Was ist Mental Load?</h3>
+                <p>Unsichtbare Arbeit im Berufsalltag sichtbar machen — das ständige Mitdenken, Organisieren, Erinnern, das vor allem Frauen schultern. Wie Teams Mental Load erkennen und umverteilen.</p>
+            </article>
+
+            <article class="fu-pillar">
+                <div class="fu-pillar-icon" aria-hidden="true">
+                    <!-- Körper-Mind-Verbindung — Auswirkungen -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="6" r="3"/>
+                        <path d="M12 9 v3"/>
+                        <path d="M7 12 h10 a2 2 0 0 1 2 2 v4 a2 2 0 0 1 -2 2 h-10 a2 2 0 0 1 -2 -2 v-4 a2 2 0 0 1 2 -2 z"/>
+                        <path d="M9 16 h6"/>
+                    </svg>
+                </div>
+                <h3>Belastung: Körper, Leistung, Kommunikation</h3>
+                <p>Wie psychische Belastung sich auf Körper, Performance und Team-Dynamik auswirkt — und was Führungskräfte und HR daraus für den Alltag ableiten können.</p>
+            </article>
+        </div>
+
+        <p class="co-section-closing">Jeder Workshop kombiniert <strong>Fachwissen, Austausch und Übungen</strong> — passend zu Branche, Team und Anlass.</p>
+    </div>
+</section>
+
+<!-- ===================== WORKSHOP-ZIELE (4 Tropfen-Karten, Process-Pattern) ===================== -->
+<section class="process section-alt" id="ziele">
+    <div class="container">
+        <span class="eyebrow" style="display: block; text-align: center;">Was die Workshops bewirken</span>
+        <h2>Vier Ziele, die direkt wirken.</h2>
+
+        <div class="process-grid co-ziele-grid">
+            <article class="process-step">
+                <div class="process-drop process-drop-1">
+                    <div class="process-drop-inner">
+                        <span class="process-num">01</span>
+                    </div>
+                </div>
+                <div class="process-text">
+                    <h3>Bewusstsein schaffen</h3>
+                    <p>Für mentale Gesundheit und konkrete Belastungsfaktoren — als Grundlage für jede weitere Veränderung im Unternehmen.</p>
+                </div>
+            </article>
+            <article class="process-step">
+                <div class="process-drop process-drop-2">
+                    <div class="process-drop-inner">
+                        <span class="process-num">02</span>
+                    </div>
+                </div>
+                <div class="process-text">
+                    <h3>Ressourcen stärken</h3>
+                    <p>Individuelle Ressourcen aktivieren und Selbstwirksamkeit fördern — damit Mitarbeitende handlungsfähig bleiben.</p>
+                </div>
+            </article>
+            <article class="process-step">
+                <div class="process-drop process-drop-3">
+                    <div class="process-drop-inner">
+                        <span class="process-num">03</span>
+                    </div>
+                </div>
+                <div class="process-text">
+                    <h3>Bindung sichern</h3>
+                    <p>Mitarbeiter:innen langfristig binden und krankheitsbedingte Ausfallzeiten reduzieren — durch Prävention statt Reaktion.</p>
+                </div>
+            </article>
+            <article class="process-step">
+                <div class="process-drop process-drop-4">
+                    <div class="process-drop-inner">
+                        <span class="process-num">04</span>
+                    </div>
+                </div>
+                <div class="process-text">
+                    <h3>Handlungsspielräume</h3>
+                    <p>Konkrete Handlungsspielräume erweitern — für mehr mentale Gesundheit und weniger Druck im Alltag.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== VORTRÄGE (Intro + 6 Themen-Pillars + Formate-Sub-Block) ===================== -->
+<section class="fu-pillars co-vortraege" id="vortraege">
+    <div class="container">
+        <div class="fu-pillars-intro">
+            <span class="eyebrow">Format 2 · Vorträge &amp; Keynotes</span>
+            <h2>Impulse, die wirken — für moderne Führung.</h2>
+            <p class="co-lead">Meine Vorträge verbinden fundiertes Fachwissen mit lebendiger Vermittlung — und schaffen neues Bewusstsein für Themen wie Kinderwunsch im Arbeitskontext, Mental Load und mentale Gesundheit. Ob bei Veranstaltungen, Konferenzen oder internen Formaten: <strong>praxisnah, inspirierend, mit Blick auf das Wesentliche</strong> — nicht nur Wissen vermitteln, sondern Nachdenken, Diskutieren und Handeln anregen.</p>
+            <p class="co-eyebrow-sub">Thematische Schwerpunkte</p>
+        </div>
+        <div class="fu-pillars-grid co-themes-grid">
+            <article class="fu-pillar">
+                <div class="fu-pillar-icon" aria-hidden="true">
+                    <!-- Hirn / Wolke — Mentale Gesundheit -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 3a3 3 0 0 0 -3 3 v0 a3 3 0 0 0 -2 5 a3 3 0 0 0 2 5 v1 a3 3 0 0 0 6 0 V6 a3 3 0 0 0 -3 -3z"/>
+                        <path d="M15 3a3 3 0 0 1 3 3 v0 a3 3 0 0 1 2 5 a3 3 0 0 1 -2 5 v1 a3 3 0 0 1 -6 0 V6 a3 3 0 0 1 3 -3z"/>
+                    </svg>
+                </div>
+                <h3>Mentale Gesundheit &amp; Stresskompetenz</h3>
+                <p>Warum mentale Gesundheit heute zur strategischen Aufgabe wird — und welche Hebel Führungskräfte und HR konkret in der Hand haben.</p>
+            </article>
+
+            <article class="fu-pillar">
+                <div class="fu-pillar-icon" aria-hidden="true">
+                    <!-- Schild — Resilienz -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2 L4 5 v6 c0 5 3.5 9 8 11 4.5-2 8-6 8-11 V5 z"/>
+                        <path d="M9 12 l2 2 l4-4"/>
+                    </svg>
+                </div>
+                <h3>Resilienz im beruflichen Alltag</h3>
+                <p>Wie Teams und Einzelne Belastung wegstecken, ohne kaputtzugehen. Mit Forschungsbefunden und Tools, die im Arbeitsalltag wirklich greifen.</p>
+            </article>
+
+            <article class="fu-pillar">
+                <div class="fu-pillar-icon" aria-hidden="true">
+                    <!-- Geschichtete Blätter — Mental Load -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="14" height="14" rx="1"/>
+                        <rect x="7" y="7" width="14" height="14" rx="1"/>
+                        <line x1="10" y1="11" x2="17" y2="11"/>
+                        <line x1="10" y1="15" x2="17" y2="15"/>
+                    </svg>
+                </div>
+                <h3>Mental Load</h3>
+                <p>Wenn unsichtbare Aufgaben zur Belastung werden — wer sie trägt, was sie kostet, und wie Unternehmen sie sichtbar machen können.</p>
+            </article>
+
+            <article class="fu-pillar">
+                <div class="fu-pillar-icon" aria-hidden="true">
+                    <!-- Pflanzentrieb — Kinderwunsch & Karriere -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22 V10"/>
+                        <path d="M12 10 C 6 10, 4 6, 5 3 C 9 3, 12 6, 12 10 Z"/>
+                        <path d="M12 14 C 17 14, 19 11, 18.5 8 C 15 8, 12 11, 12 14"/>
+                    </svg>
+                </div>
+                <h3>Kinderwunsch &amp; Karriere</h3>
+                <p>Zwischen Tabu und Realität — was Mitarbeitende durchleben, was Unternehmen tun können, und warum dieses Thema in die Workplace-Agenda gehört.</p>
+            </article>
+
+            <article class="fu-pillar">
+                <div class="fu-pillar-icon" aria-hidden="true">
+                    <!-- Flamme / Burnout-Prävention -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8.5 14.5 A 4 4 0 0 0 12 21 A 4 4 0 0 0 15.5 14.5 C 14 12 13 11.5 13 9 C 13 7 12 5.5 10.5 3.5 C 9 5 7 7.5 7 11 C 7 12.5 7.5 13.5 8.5 14.5 z"/>
+                    </svg>
+                </div>
+                <h3>Burnout-Prävention für Führungskräfte</h3>
+                <p>Wie Führungskräfte gesund führen können — und wie sie selbst nicht durchbrennen. Mit konkreten Frühwarnsignalen und Handlungsmustern.</p>
+            </article>
+
+            <article class="fu-pillar">
+                <div class="fu-pillar-icon" aria-hidden="true">
+                    <!-- Zyklus / Mondsichel — Frauengesundheit -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M12 3 A 9 9 0 0 1 12 21 A 6 6 0 0 1 12 3 z"/>
+                    </svg>
+                </div>
+                <h3>Frauengesundheit im Business</h3>
+                <p>Vom Zyklus über Kinderwunsch bis Menopause — wie sich Frauengesundheit auf Performance auswirkt und warum sie ein Workplace-Thema ist.</p>
+            </article>
+        </div>
+
+        <p class="co-section-closing">Jeder Vortrag wird <strong>individuell auf Ihre Zielgruppe und den Anlass</strong> zugeschnitten — wissenschaftlich fundiert, mit persönlicher Note.</p>
+
+        <!-- Formate-Sub-Block: Setup-Optionen für Vorträge -->
+        <div class="co-formate">
+            <span class="eyebrow">Setup &amp; Format</span>
+            <ul class="co-formate-list">
+                <li><strong>Präsenz oder remote</strong> — flexibel buchbar in DACH und international</li>
+                <li><strong>Dauer 30–90 Minuten</strong> — passend zu Konferenz, Townhall oder internem Format</li>
+                <li><strong>Optional mit Q&amp;A oder interaktiven Elementen</strong> — vom Impuls bis zum Mitmach-Format</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== CTA (hellgrau — dunkelblau bleibt dem Footer vorbehalten) ===================== -->
+<section class="cta-block cta-block-light" id="kontakt">
+    <div class="container container-narrow">
+        <div class="cta-content">
+            <span class="eyebrow">Lassen Sie uns ins Gespräch kommen</span>
+            <h2>Ein Thema sichtbar machen, <em>Menschen stärken</em>, Veränderung anstoßen?</h2>
+            <p>Erzählen Sie, wo das Thema bei Ihnen ansetzen soll. Ich höre zu, gebe eine ehrliche Einschätzung und mache Ihnen einen Vorschlag — Format, Dauer und Schwerpunkt passend zu Ihrer Zielgruppe.</p>
+            <a href="mailto:mail@sisu-coaching.de?subject=Erstgespräch%20Anfrage%20Workshops%20und%20Vortr%C3%A4ge" class="btn btn-primary btn-large">Erstgespräch anfragen</a>
+        </div>
+    </div>
+</section>
+
+<!-- Banner „FERTILITY IS A WORKPLACE ISSUE" wurde entfernt (Sinas Wunsch v89) -->
+
+</main>
+<footer class="site-footer">
+    <div class="container">
+        <!-- 4-Spalten-Footer: Brand (Logo + Tagline) | Angebote | Kontakt | Folgen -->
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" aria-label="SISU — Fertility & Mental Health">
+                    <img src="assets/sisu-logo-footer.png" alt="SISU">
+                </a>
+                <p class="footer-tagline">Fertility · Mental Health · Female Performance.<br>Coaching, Workshops &amp; Keynotes für Unternehmen, die in Frauengesundheit investieren wollen.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Angebote</h4>
+                <ul>
+                    <li><a href="workshops-vortraege.html">Workshops &amp; Keynotes</a></li>
+                    <li><a href="fuer-unternehmen.html">Für Unternehmen</a></li>
+                    <li><a href="coaching.html">1:1-Coaching</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul>
+                    <li>Mainzer Landstraße 197b<br>60326 Frankfurt am Main</li>
+                    <li><a href="mailto:mail@sisu-coaching.de">mail@sisu-coaching.de</a></li>
+                    <li><a href="tel:+4917186803620">+49&nbsp;171&nbsp;8680362</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Folgen</h4>
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/sinavalkonen/" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 SISU Coaching · Sina Valkonen</span>
+            <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="#">Cookie-Einstellungen</a></span>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Number-Counter-Animation — startet, sobald die Stats-Box ins Sichtfeld kommt.
+// Wichtig: Der IntersectionObserver beobachtet die ELTERNBOX (.stat),
+// nicht die kleinen <span>-Counter — die wären zu klein für den Threshold.
+(function() {
+    const counters = document.querySelectorAll('.counter');
+    if (!counters.length) return;
+    if (!('IntersectionObserver' in window)) return; // Endwerte bleiben im HTML
+
+    const reduceMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Reset auf 0 vor der Animation
+    counters.forEach(el => {
+        const d = parseInt(el.dataset.decimals || 0);
+        el.textContent = d > 0 ? '0,0' : '0';
+    });
+
+    function animateCount(el) {
+        const target   = parseFloat(el.dataset.count);
+        const decimals = parseInt(el.dataset.decimals || 0);
+        const duration = reduceMotion ? 1200 : 3000;
+        const start    = performance.now();
+        function step(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased    = 1 - Math.pow(1 - progress, 3);
+            const value    = target * eased;
+            el.textContent = decimals > 0
+                ? value.toFixed(decimals).replace('.', ',')
+                : Math.floor(value).toString();
+            if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+
+    // Observer auf die ganze Stats-Section — Counter starten erst, wenn
+    // der User bei der „3 Belege"-Section angekommen ist (50% sichtbar +
+    // 80px Toleranz vom unteren Rand).
+    const statsSection = document.querySelector('section.stats');
+    if (!statsSection) return;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.counter').forEach(animateCount);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5, rootMargin: '0px 0px -80px 0px' });
+
+    observer.observe(statsSection);
+})();
+</script>
+
+<!-- ===================== COOKIE-CONSENT-BANNER ===================== -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieDesc">
+    <div class="cookie-banner-content">
+        <h3 id="cookieTitle">Datenschutz-Einstellungen</h3>
+        <p id="cookieDesc">
+            Diese Seite nutzt nur technisch notwendige Cookies, um sicher und stabil zu funktionieren. Tracking- oder Marketing-Cookies kommen erst zum Einsatz, wenn Sie zustimmen. Mehr Informationen in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+        </p>
+    </div>
+    <div class="cookie-banner-actions">
+        <button type="button" class="cookie-btn-reject" id="cookieReject">Ablehnen</button>
+        <button type="button" class="cookie-btn-accept" id="cookieAccept">Einverstanden</button>
+    </div>
+</div>
+
+<script>
+// Cookie-Consent-Logik — robuster Storage mit Cookie-Fallback (für bessere Kompatibilität,
+// auch wenn die Seiten lokal über file:// statt http(s):// geöffnet werden)
+(function() {
+    const STORAGE_KEY = 'sisu-cookie-consent';
+    const banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+
+    const acceptBtn = document.getElementById('cookieAccept');
+    const rejectBtn = document.getElementById('cookieReject');
+
+    function show() { banner.classList.add('is-visible'); }
+    function hide() { banner.classList.remove('is-visible'); }
+
+    // Storage-Helfer mit Fallback: erst localStorage, dann Cookie
+    function getStored() {
+        try {
+            const v = localStorage.getItem(STORAGE_KEY);
+            if (v) return v;
+        } catch (e) {}
+        const match = document.cookie.match(new RegExp('(^|; )' + STORAGE_KEY + '=([^;]+)'));
+        return match ? decodeURIComponent(match[2]) : null;
+    }
+    function setStored(value) {
+        try {
+            localStorage.setItem(STORAGE_KEY, value);
+        } catch (e) {}
+        // Cookie: 1 Jahr gültig, path=/ sodass es auf allen Unterseiten gilt
+        document.cookie = STORAGE_KEY + '=' + encodeURIComponent(value) +
+            '; path=/; max-age=31536000; SameSite=Lax';
+    }
+    function clearStored() {
+        try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+        document.cookie = STORAGE_KEY + '=; path=/; max-age=0; SameSite=Lax';
+    }
+    function setConsent(value) {
+        setStored(value);
+        hide();
+    }
+
+    // Beim Seitenaufruf: prüfen, ob schon entschieden
+    if (!getStored()) {
+        // Etwas verzögert anzeigen — fühlt sich weniger aufdringlich an
+        setTimeout(show, 600);
+    }
+
+    acceptBtn.addEventListener('click', () => setConsent('accepted'));
+    rejectBtn.addEventListener('click', () => setConsent('rejected'));
+
+    // Cookie-Einstellungen-Link im Footer reaktiviert den Banner
+    document.querySelectorAll('a[href="#"]').forEach(link => {
+        if (link.textContent.trim() === 'Cookie-Einstellungen') {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                clearStored();
+                show();
+            });
+        }
+    });
+})();
+</script>
+
+</body>
+</html>

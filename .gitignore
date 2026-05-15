@@ -1,0 +1,5 @@
+# Snapshots: alte Versionen, gehören nicht ins Live-Deployment
+_snapshots/
+
+# README intern, optional
+.DS_Store
