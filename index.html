@@ -1527,7 +1527,7 @@ html body main section .legal-content h2 {
             <li><a href="ueber-mich.html">Über mich</a></li>
             <li><a href="sisu.html">SISU</a></li>
         </ul>
-        <a href="#kontakt" class="btn btn-primary btn-small">Erstgespräch</a>
+        <a href="#kundenportal" class="btn btn-primary btn-small" onclick="openKundenportalLogin();return false;">Kundenportal</a>
         <button class="nav-toggle" aria-label="Menü öffnen">☰</button>
     </nav>
 </header>
@@ -2155,6 +2155,235 @@ html body main section .legal-content h2 {
                 show();
             });
         }
+    });
+})();
+</script>
+
+<!-- ============================================================
+     KUNDENPORTAL LOGIN MODAL
+     Öffnet sich beim Klick auf den "Kundenportal"-Button im Header.
+     Nach Anmeldung → navigiert zu kundenportal.html
+     ============================================================ -->
+<style>
+.kp-modal[hidden] { display: none; }
+.kp-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 2rem 1rem;
+}
+.kp-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(62, 75, 92, 0.55);
+}
+.kp-modal-card {
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 3rem 2.5rem 2.5rem;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 20px 60px rgba(62, 75, 92, 0.28);
+    text-align: center;
+    animation: kpModalFadeIn 0.25s ease-out;
+}
+@keyframes kpModalFadeIn {
+    from { transform: translateY(12px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.kp-modal-close {
+    position: absolute;
+    top: 0.8rem;
+    right: 1.1rem;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    line-height: 1;
+    color: #615244;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    font-family: 'Jost', sans-serif;
+}
+.kp-modal-close:hover { color: #3E4B5C; }
+.kp-modal-brand {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.kp-modal-logo {
+    height: 78px;
+    width: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.kp-modal-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #BF9056;
+    display: block;
+    margin-bottom: 0.8em;
+}
+.kp-modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: clamp(1.9rem, 5vw, 2.4rem);
+    line-height: 1.15;
+    margin: 0 0 0.4em;
+    color: #3E4B5C;
+}
+.kp-modal-lead {
+    font-size: 0.95rem;
+    color: #615244;
+    margin-bottom: 1.8rem;
+}
+.kp-modal-form { display: grid; gap: 1rem; text-align: left; }
+.kp-modal-form label {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #615244;
+    margin-bottom: 0.4em;
+}
+.kp-modal-form input {
+    width: 100%;
+    padding: 0.9em 1em;
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    color: #3E4B5C;
+    background: #F4F1F0;
+    border: 1px solid #C7C8CB;
+    border-radius: 8px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+.kp-modal-form input:focus {
+    outline: none;
+    border-color: #D4A86D;
+    background: #FFFFFF;
+}
+.kp-modal-form button[type="submit"] {
+    margin-top: 0.5rem;
+    width: 100%;
+    background: #D4A86D;
+    color: #FFFFFF;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+.kp-modal-form button[type="submit"]:hover {
+    background: #BF9056;
+}
+.kp-modal-help {
+    margin-top: 1.6rem;
+    font-size: 0.82rem;
+    color: #615244;
+}
+.kp-modal-help a {
+    color: #BF9056;
+    text-decoration: none;
+}
+.kp-modal-help a:hover { color: #3E4B5C; }
+.kp-modal-footnote {
+    margin-top: 1.4rem;
+    font-size: 0.72rem;
+    color: #615244;
+}
+.kp-modal-error {
+    background: rgba(255, 102, 196, 0.08);
+    border: 1px solid rgba(255, 102, 196, 0.3);
+    color: #BF9056;
+    padding: 0.7em 1em;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    text-align: center;
+    margin: -0.2rem 0 0.3rem;
+}
+body.kp-modal-open { overflow: hidden; }
+</style>
+
+<div class="kp-modal" id="kpModal" role="dialog" aria-modal="true" aria-labelledby="kpModalTitle" hidden>
+    <div class="kp-modal-backdrop" onclick="closeKundenportalLogin()"></div>
+    <div class="kp-modal-card">
+        <button class="kp-modal-close" aria-label="Schließen" onclick="closeKundenportalLogin()">×</button>
+        <div class="kp-modal-brand">
+            <img src="assets/sisu-logo-header.png" alt="SISU Coaching" class="kp-modal-logo">
+        </div>
+        <span class="kp-modal-eyebrow">Willkommen</span>
+        <h2 class="kp-modal-title" id="kpModalTitle">Anmeldung zum Kundenportal</h2>
+        <p class="kp-modal-lead">Bitte geben Sie Ihren Firmen-Zugang ein.</p>
+        <form class="kp-modal-form" id="kpForm" onsubmit="return submitKundenportalLogin(event);">
+            <div>
+                <label for="kpFirma">Firmenname</label>
+                <input type="text" id="kpFirma" name="firma" placeholder="z. B. sisu-demo-gmbh" autocomplete="organization" required>
+            </div>
+            <div>
+                <label for="kpPasswort">Passwort</label>
+                <input type="password" id="kpPasswort" name="passwort" placeholder="••••••••" required>
+            </div>
+            <div class="kp-modal-error" id="kpError" hidden>Zugangsdaten ungültig</div>
+            <button type="submit">Anmelden</button>
+        </form>
+        <p class="kp-modal-help">Passwort vergessen? <a href="mailto:mail@sisu-coaching.de">Schreiben Sie mir</a></p>
+        <p class="kp-modal-footnote">SISU Coaching · DSGVO-konform · Frankfurt</p>
+    </div>
+</div>
+
+<script>
+(function() {
+    const modal = document.getElementById('kpModal');
+    const errorEl = document.getElementById('kpError');
+
+    // Phase-1A Demo-Credentials. In Phase 1B durch Vercel-Function-Login ersetzt.
+    const KP_DEMO_CREDENTIALS = {
+        'sisu-demo-gmbh': { password: 'SISU2026', portal: 'kundenportal.html' }
+    };
+
+    window.openKundenportalLogin = function() {
+        modal.hidden = false;
+        errorEl.hidden = true;
+        document.body.classList.add('kp-modal-open');
+        setTimeout(() => {
+            const firma = document.getElementById('kpFirma');
+            if (firma) firma.focus();
+        }, 100);
+    };
+    window.closeKundenportalLogin = function() {
+        modal.hidden = true;
+        document.body.classList.remove('kp-modal-open');
+    };
+    window.submitKundenportalLogin = function(event) {
+        event.preventDefault();
+        const firma = document.getElementById('kpFirma').value.trim().toLowerCase();
+        const passwort = document.getElementById('kpPasswort').value;
+        const credential = KP_DEMO_CREDENTIALS[firma];
+        if (credential && credential.password === passwort) {
+            errorEl.hidden = true;
+            window.location.href = credential.portal;
+        } else {
+            errorEl.hidden = false;
+        }
+        return false;
+    };
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.hidden) closeKundenportalLogin();
     });
 })();
 </script>

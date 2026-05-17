@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SISU Kundenportal — Ihre Coaching-Kontingent-Übersicht. Passwortgeschützter Bereich für SISU-Firmenkunden.">
+<meta name="robots" content="noindex,nofollow">
+<title>Kundenportal — SISU Coaching</title>
+
+<!-- Fonts: Cormorant Garamond + Jost (im Live-Build self-hosted) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --color-bg:           #ECE6E3;
+    --color-bg-alt:       #F4F1F0;
+    --color-surface:      #FFFFFF;
+    --color-text:         #3E4B5C;
+    --color-text-muted:   #615244;
+    --color-accent:       #D4A86D;
+    --color-accent-dark:  #BF9056;
+    --color-accent-light: #FCDFDD;
+    --color-pink:         #FF66C4;
+    --color-border:       #C7C8CB;
+
+    --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+    --font-body:    'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+
+    --container-w: 920px;
+    --radius: 8px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 1px 2px rgba(62, 75, 92, 0.06), 0 1px 3px rgba(62, 75, 92, 0.04);
+    --shadow-md: 0 6px 18px rgba(62, 75, 92, 0.07), 0 2px 6px rgba(62, 75, 92, 0.04);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-text);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+a { color: var(--color-accent-dark); text-decoration: none; transition: color 0.15s ease; }
+a:hover { color: var(--color-text); }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+h1, h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--color-text);
+}
+
+.container { max-width: var(--container-w); margin: 0 auto; padding: 0 var(--space-md); }
+
+/* ====== PORTAL HEADER ====== */
+.portal-header {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.9rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.portal-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+}
+.portal-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+.portal-logo {
+    height: 44px;
+    width: auto;
+}
+.portal-tag {
+    font-family: var(--font-body);
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    padding-left: 0.9rem;
+    border-left: 1px solid var(--color-border);
+    line-height: 1;
+}
+.portal-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    font-size: 0.9rem;
+}
+.portal-nav a { color: var(--color-text); }
+.portal-nav .logout {
+    color: var(--color-text-muted);
+    border-left: 1px solid var(--color-border);
+    padding-left: var(--space-md);
+}
+
+/* ====== GREETING ====== */
+.greeting {
+    padding: var(--space-lg) 0 var(--space-md);
+    text-align: center;
+}
+.welcome {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-accent-dark);
+    display: block;
+    margin-bottom: 0.9em;
+}
+.greeting h1 {
+    font-size: clamp(2.2rem, 5vw, 2.8rem);
+    margin-bottom: 0.4em;
+}
+.greeting .firma {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-top: 0.3em;
+}
+
+/* ====== DASHBOARD ====== */
+.dashboard {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg) var(--space-md);
+    box-shadow: var(--shadow-md);
+    margin-top: var(--space-md);
+}
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+}
+@media (max-width: 720px) {
+    .dashboard-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+}
+
+/* ====== DONUT CHART ====== */
+.chart-wrap {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+}
+.donut {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 1 / 1;
+}
+.donut-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 70%;
+}
+.donut-big {
+    font-family: var(--font-display);
+    font-size: clamp(4.2rem, 11vw, 5.6rem);
+    font-weight: 500;
+    line-height: 0.9;
+    color: var(--color-pink);
+    margin-bottom: 0.2em;
+}
+.donut-label {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    line-height: 1.35;
+}
+.donut-label .of,
+.donut-label .what {
+    display: block;
+}
+.donut-label .what {
+    color: var(--color-text);
+    margin-top: 0.15em;
+}
+
+/* ====== STAT CARDS ====== */
+.stat-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+}
+.stat-card {
+    background: var(--color-bg-alt);
+    border-radius: var(--radius);
+    padding: var(--space-sm) var(--space-md);
+    text-align: center;
+}
+.stat-card .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.25em;
+}
+.stat-card .value {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: var(--color-text);
+    line-height: 1.1;
+}
+.stat-card .unit {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 0.2em;
+}
+.stat-card.wide {
+    grid-column: 1 / -1;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.stat-card.wide .value {
+    font-size: 1.4rem;
+}
+
+/* ====== DSGVO BADGE ====== */
+.dsgvo-row {
+    text-align: center;
+    margin-top: var(--space-sm);
+}
+.dsgvo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    padding: 0.4em 0.9em;
+    border-radius: 99px;
+    border: 1px solid var(--color-border);
+}
+.dsgvo-badge .dot {
+    width: 6px;
+    height: 6px;
+    background: #4CAF50;
+    border-radius: 50%;
+}
+
+/* ====== SESSIONS LIST ====== */
+.section {
+    padding: var(--space-lg) 0 var(--space-sm);
+}
+.section h2 {
+    font-size: 1.6rem;
+    font-style: italic;
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+.sessions-list {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+.sessions-list li {
+    display: grid;
+    grid-template-columns: 140px 1fr 110px;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.95rem;
+}
+.sessions-list li:last-child { border-bottom: none; }
+.sessions-list .date {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text);
+    font-weight: 500;
+}
+.sessions-list .label-text {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+.sessions-list .duration {
+    text-align: right;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+}
+@media (max-width: 540px) {
+    .sessions-list li {
+        grid-template-columns: 1fr auto;
+        row-gap: 0.2em;
+    }
+    .sessions-list .label-text { grid-column: 1 / -1; order: 2; font-size: 0.82rem; }
+    .sessions-list .duration { order: 1; }
+}
+
+/* ====== INFO BOX ====== */
+.info-box {
+    background: var(--color-accent-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    margin-top: var(--space-md);
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    border: 1px solid rgba(212, 168, 109, 0.2);
+}
+.info-box strong { color: var(--color-pink); }
+
+/* ====== CTA ====== */
+.cta-wrap {
+    text-align: center;
+    padding: var(--space-lg) 0;
+}
+.cta-button {
+    display: inline-block;
+    background: var(--color-accent);
+    color: var(--color-surface);
+    padding: 1em 2.4em;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: background 0.15s ease, transform 0.15s ease;
+    box-shadow: var(--shadow-sm);
+}
+.cta-button:hover {
+    background: var(--color-accent-dark);
+    color: var(--color-surface);
+    transform: translateY(-1px);
+}
+.cta-secondary {
+    display: inline-block;
+    margin-left: var(--space-sm);
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    padding: 1em 0;
+}
+
+/* ====== FOOTER ====== */
+.portal-footer {
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: var(--space-md) 0;
+    margin-top: var(--space-lg);
+    font-size: 0.82rem;
+    text-align: center;
+}
+.portal-footer a {
+    color: var(--color-bg-alt);
+    margin: 0 0.6em;
+}
+.portal-footer a:hover { color: var(--color-accent); }
+.portal-footer .note {
+    font-size: 0.72rem;
+    color: var(--color-border);
+    margin-top: 0.6em;
+}
+</style>
+</head>
+<body>
+
+<!-- ============= HEADER ============= -->
+<header class="portal-header">
+    <div class="container">
+        <a href="index.html" class="portal-brand" aria-label="Zurück zur Hauptseite">
+            <img src="assets/sisu-logo-header.png" alt="SISU Coaching" class="portal-logo">
+            <span class="portal-tag">Kundenportal</span>
+        </a>
+        <nav class="portal-nav">
+            <a href="mailto:mail@sisu-coaching.de">Kontakt</a>
+            <a href="index.html" class="logout">Abmelden</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <!-- ============= GREETING ============= -->
+    <section class="container">
+        <div class="greeting">
+            <span class="welcome">Schön, dass Sie hier sind</span>
+            <h1>Ihr Coaching-Kontingent</h1>
+            <div class="firma">SISU Demo GmbH · Anna Müller, HR</div>
+        </div>
+
+        <!-- ============= DASHBOARD ============= -->
+        <div class="dashboard">
+            <div class="dashboard-grid">
+
+                <!-- Donut Chart: gefüllt = verbleibend (7/10) -->
+                <div class="chart-wrap">
+                    <svg class="donut" viewBox="0 0 100 100" aria-label="7 von 10 Stunden verbleibend">
+                        <circle cx="50" cy="50" r="42" fill="none"
+                                stroke="#F4F1F0" stroke-width="14"/>
+                        <circle cx="50" cy="50" r="42" fill="none"
+                                stroke="#FF66C4" stroke-width="14"
+                                stroke-dasharray="184.73 263.89"
+                                stroke-linecap="round"
+                                transform="rotate(-90 50 50)"/>
+                    </svg>
+                    <div class="donut-center">
+                        <div class="donut-big">7</div>
+                        <div class="donut-label">
+                            <span class="of">von 10 Stunden</span>
+                            <span class="what">verbleibend</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat Cards -->
+                <div class="stat-cards">
+                    <div class="stat-card">
+                        <div class="label">Eingesetzt</div>
+                        <div class="value">3</div>
+                        <div class="unit">Stunden</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">Verbleibend</div>
+                        <div class="value">7</div>
+                        <div class="unit">Stunden</div>
+                    </div>
+                    <div class="stat-card wide">
+                        <div>
+                            <div class="label">Kontingent gültig bis</div>
+                            <div class="value">15.05.2027</div>
+                        </div>
+                        <div style="text-align:right; font-size:0.82rem; color:var(--color-text-muted);">
+                            gebucht am<br>
+                            <span style="color:var(--color-text); font-weight:500;">15.05.2026</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- DSGVO Badge -->
+        <div class="dsgvo-row">
+            <span class="dsgvo-badge">
+                <span class="dot"></span>
+                DSGVO-konform — wir zeigen Ihnen Verbrauch, niemals Personen oder Themen
+            </span>
+        </div>
+    </section>
+
+    <!-- ============= VERLAUF ============= -->
+    <section class="container section">
+        <h2>Verlauf</h2>
+        <ul class="sessions-list">
+            <li>
+                <span class="date">12.03.2026</span>
+                <span class="label-text">Coaching-Session</span>
+                <span class="duration">60 Min</span>
+            </li>
+            <li>
+                <span class="date">26.03.2026</span>
+                <span class="label-text">Coaching-Session</span>
+                <span class="duration">60 Min</span>
+            </li>
+            <li>
+                <span class="date">09.04.2026</span>
+                <span class="label-text">Coaching-Session</span>
+                <span class="duration">60 Min</span>
+            </li>
+        </ul>
+
+        <div class="info-box">
+            Bei <strong>2 Stunden Restkontingent</strong> melde ich mich persönlich bei Ihnen —
+            wir sprechen dann gemeinsam, ob und wie wir das Kontingent verlängern.
+        </div>
+    </section>
+
+    <!-- ============= CTA ============= -->
+    <section class="container">
+        <div class="cta-wrap">
+            <a href="mailto:mail@sisu-coaching.de?subject=Terminanfrage%20SISU%20Demo%20GmbH" class="cta-button">
+                Neuen Termin anfragen
+            </a>
+            <a href="tel:+4917186803620" class="cta-secondary">oder Sina direkt anrufen →</a>
+        </div>
+    </section>
+
+</main>
+
+<!-- ============= FOOTER ============= -->
+<footer class="portal-footer">
+    <div class="container">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="mailto:mail@sisu-coaching.de">Kontakt</a>
+        <div class="note">
+            SISU Coaching · Sina Valkonen · Frankfurt am Main
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
