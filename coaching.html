@@ -222,6 +222,23 @@ section { padding: var(--space-xl) 0; }
 }
 .nav-links a { color: var(--color-text); }
 .nav-links a:hover { color: var(--color-accent-dark); text-decoration: none; }
+/* Aktive Seite: dünner SISU-Pink-Unterstrich + leicht stärkere Schrift */
+.nav-links a[aria-current="page"] {
+    color: var(--color-text);
+    font-weight: 500;
+    position: relative;
+}
+.nav-links a[aria-current="page"]:hover { color: var(--color-text); }
+.nav-links a[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-pink);
+    border-radius: 1px;
+}
 .nav-toggle { display: none; }
 
 @media (max-width: 900px) {
