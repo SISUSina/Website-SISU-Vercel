@@ -3,30 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Kinderwunsch- und Mental-Health-Coaching als Mitarbeitendenbenefit. Senkt Ausfallzeiten, stärkt Bindung und macht Sie als Arbeitgeberin sichtbar.">
+<meta name="description" content="Strategische Begleitung im Bereich Female Mental Health — für Unternehmen, die Kinderwunsch, Mental Load und Menopause als Hebel für Retention und Performance verstehen. Drei Pakete von 2.500 € bis 15.000 €.">
 <meta name="robots" content="index,follow">
 <meta name="author" content="Sina Valkonen">
 <meta name="theme-color" content="#ECE6E3">
-<link rel="canonical" href="https://www.sisu-coaching.de/fuer-unternehmen.html">
+<link rel="canonical" href="https://www.sisu-coaching.de/begleitung-im-unternehmen.html">
 
 <!-- Open Graph -->
 <meta property="og:type" content="article">
 <meta property="og:locale" content="de_DE">
 <meta property="og:site_name" content="SISU Coaching">
-<meta property="og:url" content="https://www.sisu-coaching.de/fuer-unternehmen.html">
-<meta property="og:title" content="Für Unternehmen — Female Wellbeing als Standortvorteil | SISU Coaching">
-<meta property="og:description" content="Kinderwunsch- und Mental-Health-Coaching als Mitarbeitendenbenefit. Senkt Ausfallzeiten, stärkt Bindung und macht Sie als Arbeitgeberin sichtbar.">
+<meta property="og:url" content="https://www.sisu-coaching.de/begleitung-im-unternehmen.html">
+<meta property="og:title" content="Begleitung im Unternehmen — Strategische Female Mental Health Integration | SISU Coaching">
+<meta property="og:description" content="Strategische Begleitung im Bereich Female Mental Health — auf drei Ebenen (HR/Führung, Mitarbeitende, Kultur). Drei Pakete von 2.500 € bis 15.000 €.">
 <meta property="og:image" content="https://www.sisu-coaching.de/assets/sisu-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Für Unternehmen — Female Wellbeing als Standortvorteil | SISU Coaching">
-<meta name="twitter:description" content="Kinderwunsch- und Mental-Health-Coaching als Mitarbeitendenbenefit. Senkt Ausfallzeiten, stärkt Bindung und macht Sie als Arbeitgeberin sichtbar.">
+<meta name="twitter:title" content="Begleitung im Unternehmen — Strategische Female Mental Health Integration | SISU Coaching">
+<meta name="twitter:description" content="Strategische Begleitung im Bereich Female Mental Health — auf drei Ebenen (HR/Führung, Mitarbeitende, Kultur). Drei Pakete von 2.500 € bis 15.000 €.">
 <meta name="twitter:image" content="https://www.sisu-coaching.de/assets/sisu-image.png">
 
-<title>Für Unternehmen — Female Wellbeing als Standortvorteil | SISU Coaching</title>
+<title>Begleitung im Unternehmen — Strategische Female Mental Health Integration | SISU Coaching</title>
 
 <!-- Schriften: Cormorant Garamond (Display) + Jost (Body) + Pinyon Script (Akzent)
      ⚠ Im Live-Build durch self-hosted Fonts ersetzen (DSGVO!) — siehe README -->
@@ -2287,6 +2287,311 @@ html body main section .legal-content h2 {
     max-width: none !important;
 }
 
+/* =========================================================
+   BAUSTEINE-SECTION (4 vertikale Karten mit Header + Pfeil + Body, Pink-Gradient)
+   ========================================================= */
+.bu-bausteine-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-top: 0; /* Abstand zur Überschrift kommt komplett aus #bausteine .fu-gains-intro */
+}
+/* Abstand zwischen Überschrift und Karten — kumuliert −40,5 % (erst −30 %, dann nochmal −15 %) */
+#bausteine .fu-gains-intro {
+    margin-bottom: calc(var(--space-xxl) * 0.595);
+}
+.bu-baustein {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.bu-baustein:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.bu-baustein-header {
+    padding: calc(var(--space-md) + 0.3rem) var(--space-md);
+    color: #FFFFFF;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bu-baustein-body {
+    flex: 1;
+    position: relative;
+    padding: calc(var(--space-md) + 18px) var(--space-md) var(--space-md);
+    color: var(--color-text);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    text-align: center;
+}
+.bu-baustein-body::before {
+    /* Pfeil-Notch oben mittig — Farbe des jeweiligen Header-Blocks */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 16px solid currentColor;
+}
+.bu-baustein-body p { margin: 0; }
+
+/* Pink-Gradient — Sinas Vorgabe: hell → dunkel mit weißem Header-Text.
+   Body ist jeweils eine deutlich hellere Tönung des Header-Pinks. */
+.bu-baustein-1 .bu-baustein-header { background: #EFD0F0; color: #FFFFFF; }
+.bu-baustein-1 .bu-baustein-body   { background: #F7E7F8; }
+.bu-baustein-1 .bu-baustein-body::before { border-top-color: #EFD0F0; }
+
+.bu-baustein-2 .bu-baustein-header { background: #F4C6DB; color: #FFFFFF; }
+.bu-baustein-2 .bu-baustein-body   { background: #FAE2ED; }
+.bu-baustein-2 .bu-baustein-body::before { border-top-color: #F4C6DB; }
+
+.bu-baustein-3 .bu-baustein-header { background: #EFA7CE; color: #FFFFFF; }
+.bu-baustein-3 .bu-baustein-body   { background: #F8D3E6; }
+.bu-baustein-3 .bu-baustein-body::before { border-top-color: #EFA7CE; }
+
+.bu-baustein-4 .bu-baustein-header { background: #EA71C0; color: #FFFFFF; }
+.bu-baustein-4 .bu-baustein-body   { background: #F3B8DC; }
+.bu-baustein-4 .bu-baustein-body::before { border-top-color: #EA71C0; }
+
+@media (max-width: 900px) {
+    .bu-bausteine-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+    .bu-bausteine-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   PAKETE-SECTION (Pricing-Cards für START / CORE / PARTNERSHIP)
+   ========================================================= */
+.bu-pakete {
+    background: var(--color-bg-alt); /* hellgrau — Section hebt sich von den beigen Nachbar-Sections ab */
+}
+.bu-pakete-intro {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.bu-pakete-intro .eyebrow { display: block; margin-bottom: var(--space-sm); }
+.bu-pakete-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    align-items: stretch;
+}
+.bu-paket {
+    position: relative;
+    background: var(--color-bg); /* beige — Karten heben sich von der hellgrauen Section ab */
+    border-radius: var(--radius-lg);
+    padding: calc(var(--space-lg) + 0.5rem) var(--space-lg) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.bu-paket:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.bu-paket-name {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-accent-dark);
+    margin-bottom: var(--space-sm);
+}
+.bu-paket-price {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+}
+.bu-paket-price small {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    display: block;
+    margin-top: 0.2rem;
+}
+.bu-paket-tagline {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+    line-height: 1.5;
+}
+.bu-paket ul {
+    list-style: none;
+    margin: 0 0 var(--space-md);
+    padding: 0;
+}
+.bu-paket li {
+    position: relative;
+    padding: 0.45rem 0 0.45rem 1.4rem;
+    font-size: 0.97rem;
+    line-height: 1.45;
+    border-top: 1px solid var(--color-border);
+}
+.bu-paket li:first-child { border-top: none; }
+.bu-paket li::before {
+    content: "▪";
+    position: absolute;
+    left: 0;
+    top: 0.45rem;
+    color: var(--color-accent);
+    font-size: 1rem;
+    line-height: 1.45;
+}
+.bu-paket-cta {
+    margin-top: auto;
+    padding-top: var(--space-sm);
+}
+/* CORE als Empfehlung hervorheben */
+.bu-paket-featured {
+    background: var(--color-text);
+    color: var(--color-bg);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 28px rgba(62, 75, 92, 0.18);
+}
+.bu-paket-featured:hover { transform: translateY(-12px); }
+.bu-paket-featured .bu-paket-name { color: var(--color-accent); }
+.bu-paket-featured .bu-paket-price { color: var(--color-bg); }
+.bu-paket-featured .bu-paket-price small { color: rgba(236, 230, 227, 0.7); }
+.bu-paket-featured .bu-paket-tagline { color: rgba(236, 230, 227, 0.85); }
+.bu-paket-featured li { border-top-color: rgba(236, 230, 227, 0.18); }
+.bu-paket-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-accent);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    white-space: nowrap;
+}
+.bu-pakete-note {
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    max-width: 640px;
+    margin: var(--space-md) auto 0;
+    line-height: 1.55;
+}
+@media (max-width: 900px) {
+    .bu-pakete-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
+    .bu-paket-featured { transform: none; }
+    .bu-paket-featured:hover { transform: translateY(-3px); }
+}
+
+/* =========================================================
+   POSITIONIERUNG-BLOCK ("Es geht nicht um Coachingstunden")
+   ========================================================= */
+.bu-positionierung {
+    background: var(--color-bg-alt);
+    text-align: center;
+}
+.bu-positionierung .container-narrow {
+    max-width: 820px;
+}
+.bu-positionierung h2 {
+    margin-bottom: var(--space-md);
+}
+.bu-positionierung-lead {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    max-width: 640px;
+    margin: 0 auto var(--space-lg);
+    line-height: 1.6;
+}
+.bu-werte-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem 0.85rem;
+    margin-top: var(--space-md);
+}
+.bu-wert {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    /* Scroll-Animation — initial deutlich kleiner, tiefer + unsichtbar */
+    opacity: 0;
+    transform: scale(0.6) translateY(24px);
+    transition: opacity 0.85s ease-out,
+                transform 0.85s cubic-bezier(0.34, 1.85, 0.5, 1); /* kräftiger Pop mit Federung */
+}
+/* Wenn die Grid via JS sichtbar wird, poppen die Pills einzeln nacheinander hoch */
+.bu-werte-grid.is-animated .bu-wert {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+.bu-werte-grid.is-animated .bu-wert:nth-child(1) { transition-delay: 0ms; }
+.bu-werte-grid.is-animated .bu-wert:nth-child(2) { transition-delay: 130ms; }
+.bu-werte-grid.is-animated .bu-wert:nth-child(3) { transition-delay: 260ms; }
+.bu-werte-grid.is-animated .bu-wert:nth-child(4) { transition-delay: 390ms; }
+.bu-werte-grid.is-animated .bu-wert:nth-child(5) { transition-delay: 520ms; }
+.bu-werte-grid.is-animated .bu-wert:nth-child(6) { transition-delay: 650ms; }
+.bu-werte-grid.is-animated .bu-wert:nth-child(7) { transition-delay: 780ms; }
+.bu-werte-grid.is-animated .bu-wert:nth-child(8) { transition-delay: 910ms; }
+
+/* Accessibility: User mit prefers-reduced-motion bekommen keine Animation */
+@media (prefers-reduced-motion: reduce) {
+    .bu-wert,
+    .bu-werte-grid.is-animated .bu-wert {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* =========================================================
+   ABSCHLUSS-BLOCK (Warum strategisch? — kompakt)
+   ========================================================= */
+.bu-warum {
+    background: var(--color-bg);
+    text-align: center;
+}
+.bu-warum .container-narrow {
+    max-width: 760px;
+}
+.bu-warum-text {
+    color: var(--color-text);
+    line-height: 1.7;
+    max-width: 640px;
+    margin: var(--space-md) auto 0;
+}
+.bu-warum-pink {
+    color: var(--color-pink);
+    font-weight: 500;
+}
+
 </style>
 </head>
 <body>
@@ -2297,8 +2602,8 @@ html body main section .legal-content h2 {
             <img src="assets/sisu-logo-header.png" alt="SISU">
         </a>
         <ul class="nav-links">
-            <li><a href="fuer-unternehmen.html" aria-current="page">Warum SISU</a></li>
-            <li><a href="begleitung-im-unternehmen.html">Begleitung</a></li>
+            <li><a href="fuer-unternehmen.html">Warum SISU</a></li>
+            <li><a href="begleitung-im-unternehmen.html" aria-current="page">Begleitung</a></li>
             <li><a href="coaching.html">1:1-Coaching</a></li>
             <li><a href="workshops-vortraege.html">Workshops &amp; Keynotes</a></li>
             <li><a href="ueber-mich.html">Über mich</a></li>
@@ -2314,195 +2619,196 @@ html body main section .legal-content h2 {
 <!-- ===================== HERO (zentriert, ohne Foto) ===================== -->
 <section class="fu-hero">
     <div class="container container-narrow">
-        <span class="eyebrow">Für Unternehmen</span>
-        <h1>Warum Unternehmen <em>jetzt handeln</em> sollten.</h1>
-        <p class="fu-hero-lead">Mentale Belastungen, Kinderwunsch und Mental Load sind längst Workplace-Themen — nur spricht kaum jemand darüber. SISU bringt mentale Begleitung dorthin, wo sie wirklich gebraucht wird.</p>
+        <span class="eyebrow">Begleitung im Unternehmen</span>
+        <h1>Strategische Begleitung im Bereich <em>Female Mental Health</em>.</h1>
+        <p class="fu-hero-lead">Für Unternehmen, die mentale Belastungen rund um Kinderwunsch, Mental Load, Zyklusgesundheit und Menopause professionell und wirksam adressieren möchten — auf allen drei Ebenen, die echten Wandel ermöglichen.</p>
         <div class="fu-hero-ctas">
-            <a href="#kontakt" class="btn btn-primary">30 Minuten Erstgespräch</a>
-            <a href="#saeulen" class="btn btn-secondary">Argumente ansehen</a>
+            <a href="#pakete" class="btn btn-primary">Pakete ansehen</a>
+            <a href="#kontakt" class="btn btn-secondary">Erstgespräch anfragen</a>
         </div>
     </div>
 </section>
 
-<!-- ===================== DREI SÄULEN (Strich-getrennt mit Icons) ===================== -->
-<section class="fu-pillars" id="saeulen">
+<!-- ===================== DREI EBENEN (HR/Führung, Mitarbeiter, Kultur) ===================== -->
+<section class="fu-pillars" id="ebenen">
     <div class="container">
         <div class="fu-pillars-intro">
-            <span class="eyebrow">Mentale Gesundheit als Erfolgsfaktor</span>
-            <h2>Drei Argumente, die für sich sprechen.</h2>
+            <span class="eyebrow">Wo SISU im Unternehmen ansetzt</span>
+            <h2>Drei Ebenen, die gemeinsam wirken.</h2>
+            <p style="max-width: 640px; margin: var(--space-sm) auto 0; color: var(--color-text-muted); line-height: 1.6;">Echte Veränderung entsteht nicht durch einen Workshop allein. SISU greift dort an, wo Belastungen wirklich sichtbar werden — strategisch, individuell und kulturell.</p>
         </div>
         <div class="fu-pillars-grid">
             <article class="fu-pillar">
                 <div class="fu-pillar-icon" aria-hidden="true">
-                    <!-- Wolke mit Regen — psychische Belastung -->
+                    <!-- Zielscheibe / Strategie — HR & Führung -->
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17.5 10a5.5 5.5 0 0 0-10.69-1.84A4.5 4.5 0 1 0 6 17h11.5a4 4 0 0 0 0-7z"/>
-                        <line x1="8" y1="19" x2="8" y2="22"/>
-                        <line x1="12" y1="20" x2="12" y2="23"/>
-                        <line x1="16" y1="19" x2="16" y2="22"/>
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="6"/>
+                        <circle cx="12" cy="12" r="2"/>
                     </svg>
                 </div>
-                <h3>Psychische Belastung</h3>
-                <p>Psychische Erkrankungen machen mittlerweile <strong>über 20 % des gesamten Krankenstands</strong> aus — mit direkten Auswirkungen auf Produktivität, Teamdynamik und Unternehmensleistung. Wer mentale Gesundheit fördert, sichert langfristige Stabilität.</p>
+                <h3>Strategische Ebene</h3>
+                <p><strong>HR &amp; Führung.</strong> Wir analysieren gemeinsam, wo Belastungen im Unternehmen entstehen, welche Themen relevant sind und welche Formate zur Kultur passen. Daraus entstehen realistische Ziele und ein klarer Fahrplan für mentale Gesundheit als Führungsaufgabe.</p>
             </article>
 
             <article class="fu-pillar">
                 <div class="fu-pillar-icon" aria-hidden="true">
-                    <!-- Waage — Gleichstellung -->
+                    <!-- Person mit Herz — Mitarbeitende -->
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 3v18"/>
-                        <path d="M7 21h10"/>
-                        <path d="M6 8h12"/>
-                        <path d="M6 8l-3 6c0 1.5 1.5 2.5 3 2.5s3-1 3-2.5L6 8z"/>
-                        <path d="M18 8l-3 6c0 1.5 1.5 2.5 3 2.5s3-1 3-2.5L18 8z"/>
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
                     </svg>
                 </div>
-                <h3>Gleichstellung</h3>
-                <p>Trotz Fortschritten bleibt der Anteil von Frauen in Führungspositionen niedrig — emotionale Belastungen, Mental Load und die Vereinbarkeit von Karriere mit Kinderwunsch sind zentrale Gründe. Echte Chancengleichheit entsteht nicht durch Quoten, sondern durch <strong>konkrete Unterstützung</strong>.</p>
+                <h3>Mitarbeiter-Ebene</h3>
+                <p><strong>1:1 Coaching.</strong> Vertrauliche Einzelsessions für Mitarbeitende und Führungskräfte in belastenden Lebensphasen — Kinderwunsch, Mental Load, Zyklus, Menopause, akute Erschöpfung. Online oder vor Ort, flexibel abrufbar über sechs Monate.</p>
             </article>
 
             <article class="fu-pillar">
                 <div class="fu-pillar-icon" aria-hidden="true">
-                    <!-- Personen / Talente — Fachkräftemangel -->
+                    <!-- Sprechblasen — Awareness/Kultur -->
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                     </svg>
                 </div>
-                <h3>Fachkräftemangel</h3>
-                <p>Der Wettbewerb um qualifizierte Fach- und Führungskräfte wird härter — gerade in MINT und Gesundheit. Gerade für Frauen sind <strong>Vereinbarkeit, Kinderwunsch und Familiengründung entscheidend</strong> bei der Arbeitgeberwahl. Wer hier Unterstützung bietet, bindet Talente langfristig.</p>
+                <h3>Awareness- &amp; Kultur-Ebene</h3>
+                <p><strong>Workshops &amp; Keynotes.</strong> Wir schaffen Räume, in denen Themen wie Kinderwunsch, Mental Health und Menopause endlich besprochen werden dürfen — enttabuisierend, fundiert und mit psychologischer Sicherheit. Für Teams, Führungsrunden oder als Unternehmens-Event.</p>
             </article>
         </div>
     </div>
 </section>
 
-<!-- ===================== STAT-STREIFEN (4 große Zahlen) ===================== -->
-<section class="fu-stats section-alt">
-    <div class="container">
-        <div class="fu-stats-intro">
-            <span class="eyebrow">Die harten Zahlen</span>
-            <h2>Vier Belege, die zeigen: das Thema ist messbar.</h2>
-        </div>
-        <div class="fu-stats-grid">
-            <div class="fu-stat">
-                <div class="fu-stat-num">431</div>
-                <span class="fu-stat-divider"></span>
-                <div class="fu-stat-label">Fehltage je 100&nbsp;Versicherte bei Frauen — durch psychische Erkrankungen.</div>
-                <div class="fu-stat-source">DAK-Psychreport 2025</div>
-            </div>
-            <div class="fu-stat">
-                <div class="fu-stat-num">67&nbsp;%</div>
-                <span class="fu-stat-divider"></span>
-                <div class="fu-stat-label">der Frauen im Kinderwunschprozess berichten von negativen Auswirkungen im Arbeitsalltag.</div>
-                <div class="fu-stat-source">Eigene Erhebung, Valkonen/SISU 2024 (N=99)</div>
-            </div>
-            <div class="fu-stat">
-                <div class="fu-stat-num">86&nbsp;%</div>
-                <span class="fu-stat-divider"></span>
-                <div class="fu-stat-label">der Frauen wünschen sich, dass ihr Arbeitgeber sie im Kinderwunschprozess unterstützt.</div>
-                <div class="fu-stat-source">peaches Studie 2024 (n=500+)</div>
-            </div>
-            <div class="fu-stat">
-                <div class="fu-stat-num">7&nbsp;Mio.</div>
-                <span class="fu-stat-divider"></span>
-                <div class="fu-stat-label">Arbeitskräfte fehlen Deutschland bis 2035 — auf weibliche Talente kann niemand verzichten.</div>
-                <div class="fu-stat-source">IAB-Studie, 2022</div>
-            </div>
+<!-- ===================== POSITIONIERUNG (Was SISU NICHT ist) ===================== -->
+<section class="bu-positionierung">
+    <div class="container container-narrow">
+        <span class="eyebrow">Was wir wirklich anbieten</span>
+        <h2>Es geht nicht um Coachingstunden.</h2>
+        <p class="bu-positionierung-lead">SISU verkauft keine Sessions im Stundenpaket. SISU steht für das, was hinter jeder Stunde steckt — für die Wirkung, die Sie als Unternehmen tatsächlich brauchen.</p>
+        <div class="bu-werte-grid">
+            <span class="bu-wert">Retention</span>
+            <span class="bu-wert">Prävention</span>
+            <span class="bu-wert">Enttabuisierung</span>
+            <span class="bu-wert">Psychologische Sicherheit</span>
+            <span class="bu-wert">Mitarbeiterbindung</span>
+            <span class="bu-wert">Moderne Arbeitgeberkultur</span>
+            <span class="bu-wert">Reduzierte mentale Belastung</span>
+            <span class="bu-wert">Nachhaltige Leistungsfähigkeit</span>
         </div>
     </div>
 </section>
 
-<!-- ===================== PROBLEM (2-Spalten: Text + Foto-Platzhalter) ===================== -->
-<section class="fu-problem">
-    <div class="fu-problem-layout">
-        <!-- Bild links: volle Breite + Höhe der Spalte -->
-        <div class="fu-problem-image">
-            <img src="assets/frau-dunkel.png" alt="Frau am Schreibtisch, nachdenklich blickend — zwischen Berufsalltag und persönlicher Belastung">
-        </div>
-        <!-- Text rechts -->
-        <div class="fu-problem-content">
-            <span class="eyebrow">Zwischen Kinderwunschklinik und Konferenzraum</span>
-            <h2>Mentale Begleitung da, wo sie wirklich gebraucht wird.</h2>
-
-            <p><strong>Fertility ist nicht nur Privatsache.</strong> Sie ist längst ein Thema für die Arbeitswelt — nur spricht kaum jemand darüber.</p>
-
-            <p>In Deutschland sind <strong>etwa 15 % der Paare ungewollt kinderlos</strong> — also rund jede 6. bis 7. Ehe. Viele betroffene Frauen stehen mitten im Berufsleben. Der unerfüllte Kinderwunsch ist dabei nicht nur medizinisch herausfordernd, sondern vor allem <strong>emotional und mental extrem belastend</strong>.</p>
-
-            <p class="fu-problem-list-intro">Die Betroffenen erleben:</p>
-            <ul class="fu-problem-list">
-                <li>wiederholte Enttäuschungen</li>
-                <li>invasive medizinische Behandlungen</li>
-                <li>hormonelle Schwankungen</li>
-                <li>Schuldgefühle und Scham</li>
-                <li>das Gefühl, im Arbeitsalltag „funktionieren" zu müssen</li>
-            </ul>
-
-            <p class="fu-problem-list-intro">Diese Belastung wirkt sich direkt auf die Arbeitsfähigkeit aus:</p>
-            <ul class="fu-problem-list">
-                <li>Konzentrationsstörungen, emotionale Erschöpfung</li>
-                <li>erhöhte Anfälligkeit für Burnout</li>
-                <li>steigende Krankheitstage</li>
-                <li>innere Kündigung oder tatsächlicher Rückzug aus dem Berufsleben</li>
-            </ul>
-
-            <p class="fu-problem-emphasis">Und genau hier liegt das Problem: Die Kinderwunschzeit ist eine der sensibelsten Phasen im Leben — und trotzdem im betrieblichen Gesundheitsmanagement <strong>bislang unsichtbar</strong>.</p>
-        </div>
-    </div>
-</section>
-
-<!-- ===================== WAS UNTERNEHMEN GEWINNEN (2×3 Grid) ===================== -->
-<section class="fu-gains section-alt">
+<!-- ===================== VIER BAUSTEINE (vertikale Karten mit Header + Pfeil + Body, Pink-Gradient) ===================== -->
+<section class="fu-gains" id="bausteine">
     <div class="container">
         <div class="fu-gains-intro">
-            <span class="eyebrow">Was Unternehmen gewinnen</span>
-            <h2>Sechs Hebel, die direkt auf Ihre Organisation wirken.</h2>
+            <span class="eyebrow">Die Bausteine des Programms</span>
+            <h2>Vier Elemente, die zusammen wirken.</h2>
         </div>
-        <div class="fu-gains-grid">
-            <article class="fu-gain">
-                <div class="fu-gain-num">01</div>
-                <h3>Fachkräfte binden</h3>
-                <p>Sie binden qualifizierte Mitarbeiterinnen langfristig, indem Sie emotionale Belastungen ernst nehmen und aktiv begleiten.</p>
+        <div class="bu-bausteine-grid">
+            <article class="bu-baustein bu-baustein-1">
+                <div class="bu-baustein-header">Strategischer Kick-Off mit HR + Führung</div>
+                <div class="bu-baustein-body">
+                    <p>60–90 Minuten Analyse der aktuellen Situation: Wo entstehen Belastungen? Welche Themen sind im Unternehmen relevant? Welche Formate passen zur Kultur? Wir definieren gemeinsam realistische Ziele und einen klaren Fahrplan.</p>
+                </div>
             </article>
-            <article class="fu-gain">
-                <div class="fu-gain-num">02</div>
-                <h3>Ausfälle reduzieren</h3>
-                <p>Sie senken Krankheits- und Ausfalltage, indem Sie präventiv handeln und Ihre Teams mental stärken.</p>
+            <article class="bu-baustein bu-baustein-2">
+                <div class="bu-baustein-header">Vertrauliche 1:1 Coaching-Sessions</div>
+                <div class="bu-baustein-body">
+                    <p>Je 60 Minuten, online oder vor Ort — für Mitarbeitende und Führungskräfte. Flexibel abrufbar innerhalb von sechs Monaten. Vertraulich, lösungsorientiert und passgenau zur jeweiligen Lebensphase.</p>
+                </div>
             </article>
-            <article class="fu-gain">
-                <div class="fu-gain-num">03</div>
-                <h3>Gleichstellung leben</h3>
-                <p>Sie machen auch unsichtbare mentale Belastungen sichtbar — und bieten dafür konkrete Lösungen statt nur Quoten.</p>
+            <article class="bu-baustein bu-baustein-3">
+                <div class="bu-baustein-header">HR-Impuls + Führungskräfte-Sensibilisierung</div>
+                <div class="bu-baustein-body">
+                    <p>60-minütiger Praxis-Impuls zu den Themen, die im Alltag wirklich gebraucht werden: Umgang mit Mitarbeitenden in belastenden Lebensphasen, psychologische Sicherheit, hilfreiche Kommunikation, Mental Load, Kinderwunsch und Menopause im Arbeitskontext — und wo Unterstützung aufhört und Übergriffigkeit beginnt.</p>
+                </div>
             </article>
-            <article class="fu-gain">
-                <div class="fu-gain-num">04</div>
-                <h3>Leistungsfähigkeit sichern</h3>
-                <p>Sie investieren in nachhaltige Produktivität — denn mentale Gesundheit ist ein entscheidender Faktor für Präsenz und Performance.</p>
-            </article>
-            <article class="fu-gain">
-                <div class="fu-gain-num">05</div>
-                <h3>Arbeitgeber-Attraktivität</h3>
-                <p>Sie stärken Ihre Position bei weiblichen Talenten — nicht mit Quoten, sondern mit konkreten, gelebten Angeboten.</p>
-            </article>
-            <article class="fu-gain">
-                <div class="fu-gain-num">06</div>
-                <h3>Moderne Arbeitskultur</h3>
-                <p>Sie schaffen Bedingungen, in denen Work-Life-Balance keine Floskel ist, sondern Grundlage gesunder Führung.</p>
+            <article class="bu-baustein bu-baustein-4">
+                <div class="bu-baustein-header">Wirkungs-Check + Abschlussgespräch</div>
+                <div class="bu-baustein-body">
+                    <p>Gemeinsame Reflexion am Ende der Begleitung: anonymisierte Erkenntnisse aus den Sessions, identifizierte Bedarfe, konkrete Handlungsempfehlungen und mögliche nächste Schritte — als belastbare Basis für Ihre weitere Strategie.</p>
+                </div>
             </article>
         </div>
     </div>
 </section>
 
-<!-- ===================== WAS SISU BIETET (Closing Quote) ===================== -->
-<section class="fu-offer">
+<!-- ===================== DREI PAKETE (Pricing-Cards: START / CORE / PARTNERSHIP) ===================== -->
+<section class="bu-pakete section-alt" id="pakete">
+    <div class="container">
+        <div class="bu-pakete-intro">
+            <span class="eyebrow">Drei Unternehmenspakete</span>
+            <h2>Wählen Sie das passende Level.</h2>
+            <p style="color: var(--color-text-muted); margin-top: var(--space-sm); line-height: 1.6;">Jedes Paket bringt Tiefe in ein anderes Unternehmensformat. Alle drei umfassen Vorbereitung, koordinierte E-Mail-Kommunikation und vollständige Abwicklung — Sie konzentrieren sich auf Ihre Mitarbeitenden, ich auf die Umsetzung.</p>
+        </div>
+
+        <div class="bu-pakete-grid">
+
+            <!-- PAKET 1: START -->
+            <article class="bu-paket">
+                <div class="bu-paket-name">Start</div>
+                <div class="bu-paket-price">ab 2.500&nbsp;€<small>Einstieg ins Thema</small></div>
+                <p class="bu-paket-tagline">Der Einstieg für Unternehmen, die das Thema ernsthaft adressieren möchten — ohne sofortige Großinvestition.</p>
+                <ul>
+                    <li>Strategischer Kick-Off mit HR + Führung</li>
+                    <li>5 vertrauliche 1:1 Coaching-Sessions</li>
+                    <li>1 HR-Impuls (60 Min)</li>
+                    <li>Begleitende E-Mail-Kommunikation</li>
+                </ul>
+                <div class="bu-paket-cta">
+                    <a href="mailto:mail@sisu-coaching.de?subject=Anfrage%20Paket%20START" class="btn btn-secondary btn-small">Anfragen</a>
+                </div>
+            </article>
+
+            <!-- PAKET 2: CORE (Empfehlung) -->
+            <article class="bu-paket bu-paket-featured">
+                <span class="bu-paket-badge">Empfehlung</span>
+                <div class="bu-paket-name">Core</div>
+                <div class="bu-paket-price">ab 4.500&nbsp;€<small>Vollständige Begleitung</small></div>
+                <p class="bu-paket-tagline">Das komplette Programm. Für Unternehmen, die echte, messbare Wirkung wollen — über alle drei Ebenen.</p>
+                <ul>
+                    <li>Strategischer Kick-Off mit HR + Führung</li>
+                    <li>10 vertrauliche 1:1 Coaching-Sessions</li>
+                    <li>HR-Schulung + Führungskräfte-Sensibilisierung</li>
+                    <li>Wirkungs-Check + Abschlussgespräch</li>
+                    <li>Begleitung über 6 Monate</li>
+                </ul>
+                <div class="bu-paket-cta">
+                    <a href="mailto:mail@sisu-coaching.de?subject=Anfrage%20Paket%20CORE" class="btn btn-primary btn-small">Anfragen</a>
+                </div>
+            </article>
+
+            <!-- PAKET 3: PARTNERSHIP -->
+            <article class="bu-paket">
+                <div class="bu-paket-name">Partnership</div>
+                <div class="bu-paket-price">ab 8.000&nbsp;€<small>individuell gestaltbar</small></div>
+                <p class="bu-paket-tagline">Für Unternehmen, die Female Mental Health strategisch in ihre Kultur einbinden möchten — als langfristige Partnerschaft.</p>
+                <ul>
+                    <li>Mehrere Workshops &amp; Keynote-Formate</li>
+                    <li>Spezifische Führungskräfte-Formate</li>
+                    <li>Coaching-Kontingente für Mitarbeitende</li>
+                    <li>Aufbau interner Awareness-Strukturen</li>
+                    <li>Laufendes Sparring mit HR</li>
+                    <li>Regelmäßige Begleitung &amp; Reviews</li>
+                </ul>
+                <div class="bu-paket-cta">
+                    <a href="mailto:mail@sisu-coaching.de?subject=Anfrage%20Paket%20PARTNERSHIP" class="btn btn-secondary btn-small">Anfragen</a>
+                </div>
+            </article>
+
+        </div>
+
+        <p class="bu-pakete-note">
+            Alle Pakete sind <strong>individuell anpassbar</strong> — die Preise verstehen sich als Einstiegswerte und werden auf Ihre Größe, Branche und Zielsetzung zugeschnitten. Im Erstgespräch klären wir kostenfrei, welches Format zu Ihrer Situation passt.
+        </p>
+    </div>
+</section>
+
+<!-- ===================== WARUM STRATEGISCH (Closing-Argument, kompakt) ===================== -->
+<section class="bu-warum">
     <div class="container container-narrow">
-        <span class="eyebrow">Was SISU bietet</span>
-        <h2>Mentale Begleitung in der Kinderwunschzeit — direkt ins Unternehmen.</h2>
-        <p class="fu-offer-text">SISU bringt mentale Begleitung dorthin, wo sie gebraucht wird — als Angebot, das <strong>emotional entlastet, gesundheitlich stabilisiert und berufliche Perspektiven erhält</strong>.</p>
-        <blockquote class="fu-offer-quote">
-            Weil <span class="pink">echte Gleichstellung</span> auch bedeutet, <em>mentale Lasten</em> ernst zu nehmen.
-        </blockquote>
+        <span class="eyebrow">Warum nicht nur ein einzelner Workshop?</span>
+        <h2>Echte Veränderung braucht alle drei Ebenen.</h2>
+        <p class="bu-warum-text">Ein guter Workshop berührt. Eine gute Coaching-Stunde entlastet. Aber nachhaltige Wirkung entsteht erst, wenn <span class="bu-warum-pink">Strategie, Mitarbeitende und Kultur gleichzeitig adressiert</span> werden — wenn HR die richtigen Fragen stellt, Mitarbeitende einen vertraulichen Raum haben und die Organisation gemeinsam lernt, über bisher tabuisierte Themen zu sprechen.</p>
     </div>
 </section>
 
@@ -2513,7 +2819,7 @@ html body main section .legal-content h2 {
             <span class="eyebrow">30 Minuten Erstgespräch</span>
             <h2>Lassen Sie uns kennenlernen.</h2>
             <p>Erzählen Sie, wo das Thema bei Ihnen ansetzen soll. Ich höre zu und gebe eine ehrliche Einschätzung. Kein Verkaufsgespräch, keine Verbindlichkeit.</p>
-            <a href="mailto:mail@sisu-coaching.de?subject=Erstgespräch%20Anfrage%20für%20Unternehmen" class="btn btn-primary btn-large">Erstgespräch anfragen</a>
+            <a href="mailto:mail@sisu-coaching.de?subject=Erstgespräch%20Begleitung%20im%20Unternehmen" class="btn btn-primary btn-large">Erstgespräch anfragen</a>
         </div>
     </div>
 </section>
@@ -2537,7 +2843,6 @@ html body main section .legal-content h2 {
                     <li><a href="begleitung-im-unternehmen.html">Begleitung im Unternehmen</a></li>
                     <li><a href="workshops-vortraege.html">Workshops &amp; Keynotes</a></li>
                     <li><a href="fuer-unternehmen.html">Für Unternehmen</a></li>
-            <li><a href="begleitung-im-unternehmen.html">Begleitung</a></li>
                     <li><a href="coaching.html">1:1-Coaching</a></li>
                 </ul>
             </div>
@@ -2613,6 +2918,40 @@ html body main section .legal-content h2 {
     }, { threshold: 0.5, rootMargin: '0px 0px -80px 0px' });
 
     observer.observe(statsSection);
+})();
+</script>
+
+<script>
+// Pill-Pop-Animation — die 8 Werte-Pills („Retention", „Prävention", …)
+// poppen einzeln nacheinander auf, sobald die Section ins Sichtfeld kommt.
+(function() {
+    const grid = document.querySelector('.bu-werte-grid');
+    if (!grid) return;
+
+    // Kein IntersectionObserver verfügbar (alte Browser)? → direkt sichtbar
+    if (!('IntersectionObserver' in window)) {
+        grid.classList.add('is-animated');
+        return;
+    }
+
+    // User mit Reduced-Motion? → direkt sichtbar, keine Animation
+    const reduceMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+        grid.classList.add('is-animated');
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                grid.classList.add('is-animated');
+                observer.unobserve(grid);
+            }
+        });
+    }, { threshold: 0.25, rootMargin: '0px 0px -50px 0px' });
+
+    observer.observe(grid);
 })();
 </script>
 

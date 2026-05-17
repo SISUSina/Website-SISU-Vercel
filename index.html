@@ -823,7 +823,7 @@ section { padding: var(--space-xl) 0; }
     line-height: 1;
 }
 /* Farb-Abstufung Tropfen — zart Rosa → mittel → Pink */
-.process-drop-1 { --drop-color: #FCDFDD; }  /* zart Rosa */
+.process-drop-1 { --drop-color: #EFD0F0; }  /* zart Lavendel-Pink */
 .process-drop-2 { --drop-color: #FEA2D0; }  /* mittlere Pink-Tönung */
 .process-drop-3 { --drop-color: #FF66C4; }  /* SISU-Pink-Akzent */
 
@@ -1162,6 +1162,14 @@ section { padding: var(--space-xl) 0; }
 .cta-block .btn-secondary:hover { border-color: var(--color-bg); color: var(--color-bg); }
 .cta-block-ctas { display: flex; gap: var(--space-sm); justify-content: center; flex-wrap: wrap; }
 
+/* Telefon-Button: Desktop zeigt die Nummer, Mobile zeigt "Direkt anrufen" */
+.btn-phone .btn-phone-mobile { display: none; }
+.btn-phone .btn-phone-desktop { display: inline; }
+@media (max-width: 768px) {
+    .btn-phone .btn-phone-mobile { display: inline; }
+    .btn-phone .btn-phone-desktop { display: none; }
+}
+
 /* =========================================================
    NEWSLETTER mit PDF-Lead-Magnets (Pitch + Roadmap)
    ========================================================= */
@@ -1495,9 +1503,10 @@ html body main section .legal-content h2 {
             <img src="assets/sisu-logo-header.png" alt="SISU">
         </a>
         <ul class="nav-links">
-            <li><a href="fuer-unternehmen.html">Für Unternehmen</a></li>
+            <li><a href="fuer-unternehmen.html">Warum SISU</a></li>
+            <li><a href="begleitung-im-unternehmen.html">Begleitung</a></li>
             <li><a href="coaching.html">1:1-Coaching</a></li>
-            <li><a href="workshops-vortraege.html">Workshops &amp; Vorträge</a></li>
+            <li><a href="workshops-vortraege.html">Workshops &amp; Keynotes</a></li>
             <li><a href="ueber-mich.html">Über mich</a></li>
             <li><a href="sisu.html">SISU</a></li>
         </ul>
@@ -1518,7 +1527,7 @@ html body main section .legal-content h2 {
         <div class="hero-content">
             <span class="eyebrow">Fertility · Mental Health · Female Performance</span>
             <h1>Frauengesundheit ist <em>Unternehmenserfolg.</em></h1>
-            <p class="lead">Coaching, Workshops und Keynotes für Unternehmen, die Kinderwunsch, Mental Load und Wechseljahre als strategischen Hebel für Retention und nachhaltige Leistungsfähigkeit verstehen.</p>
+            <p class="lead">SISU ist die strategische Begleitung für Unternehmen, die Kinderwunsch, Mental Load und Wechseljahre als entscheidende Hebel für Retention, Gesundheit und langfristige Performance verstehen.</p>
             <div class="hero-ctas">
                 <a href="#kontakt" class="btn btn-primary">30 Minuten Erstgespräch</a>
                 <a href="#angebote" class="btn btn-secondary">Angebote ansehen</a>
@@ -1699,7 +1708,7 @@ html body main section .legal-content h2 {
 
         <div class="offer-grid">
             <article class="offer-card">
-                <span class="offer-tier">Tier · 01 / Reichweite</span>
+                <span class="offer-tier">Ebene · 01 / Reichweite</span>
                 <h3>Workshops &amp; Keynotes</h3>
                 <p class="offer-tagline">// für HR-Tage, Networks und Führungskräfte-Trainings</p>
                 <div class="offer-price-block">
@@ -1712,12 +1721,12 @@ html body main section .legal-content h2 {
                     <li>Halb- oder Tages-Workshops</li>
                     <li>Reihen über mehrere Wochen</li>
                 </ul>
-                <a href="#kontakt" class="btn btn-secondary offer-btn">Anfragen →</a>
+                <a href="workshops-vortraege.html" class="btn btn-secondary offer-btn">Mehr erfahren →</a>
             </article>
 
             <article class="offer-card featured">
                 <span class="offer-badge">Empfohlen</span>
-                <span class="offer-tier">Tier · 02 / Strategische Tiefe</span>
+                <span class="offer-tier">Ebene · 02 / Strategische Tiefe</span>
                 <h3>Begleitung im Unternehmen</h3>
                 <p class="offer-tagline">// strategische BGM-Integration mit messbarer Wirkung</p>
                 <div class="offer-price-block">
@@ -1726,15 +1735,15 @@ html body main section .legal-content h2 {
                 <p class="offer-meta">Konzept-Workshop · 4–12 Monate Begleitung · individuelle Kalkulation</p>
                 <hr class="offer-divider">
                 <ul>
-                    <li>Diagnose-Workshop mit HR + Geschäftsführung</li>
+                    <li>Strategischer Kick-Off mit HR + Geschäftsführung</li>
                     <li>Programm-Konzeption auf Maß</li>
                     <li>4–12-monatige Begleitung mit Wirkungs-Check</li>
                 </ul>
-                <a href="#kontakt" class="btn btn-primary offer-btn">Anfragen →</a>
+                <a href="begleitung-im-unternehmen.html" class="btn btn-primary offer-btn">Mehr erfahren →</a>
             </article>
 
             <article class="offer-card" id="coaching">
-                <span class="offer-tier">Tier · 03 / 1:1-Tiefe</span>
+                <span class="offer-tier">Ebene · 03 / 1:1-Tiefe</span>
                 <h3>Female Performance Coaching</h3>
                 <p class="offer-tagline">// Begleitung in herausfordernden Lebensphasen</p>
                 <div class="offer-price-block">
@@ -1747,7 +1756,7 @@ html body main section .legal-content h2 {
                     <li>Mental Load am Arbeitsplatz</li>
                     <li>Wechseljahre &amp; Female Performance</li>
                 </ul>
-                <a href="#kontakt" class="btn btn-secondary offer-btn">Anfragen →</a>
+                <a href="coaching.html" class="btn btn-secondary offer-btn">Mehr erfahren →</a>
             </article>
         </div>
     </div>
@@ -1924,7 +1933,10 @@ html body main section .legal-content h2 {
         <h2>30 Minuten Erstgespräch. Ohne Vorbedingungen.</h2>
         <p>Sie erzählen, wo das Thema bei Ihnen ansetzen soll. Ich höre zu und gebe eine ehrliche Einschätzung. Wenn es passt, gehen wir gemeinsam weiter — wenn nicht, bekommen Sie einen Tipp, was helfen könnte.</p>
         <div class="cta-block-ctas">
-            <a href="#" class="btn btn-primary">Termin direkt buchen</a>
+            <a href="tel:+4917186803620" class="btn btn-primary btn-phone">
+                <span class="btn-phone-mobile">Direkt anrufen</span>
+                <span class="btn-phone-desktop">+49&nbsp;171&nbsp;8680362</span>
+            </a>
             <a href="mailto:mail@sisu-coaching.de" class="btn btn-secondary">Per Mail schreiben</a>
         </div>
     </div>
@@ -1973,6 +1985,7 @@ html body main section .legal-content h2 {
             <div class="footer-col">
                 <h4>Angebote</h4>
                 <ul>
+                    <li><a href="begleitung-im-unternehmen.html">Begleitung im Unternehmen</a></li>
                     <li><a href="workshops-vortraege.html">Workshops &amp; Keynotes</a></li>
                     <li><a href="fuer-unternehmen.html">Für Unternehmen</a></li>
                     <li><a href="coaching.html">1:1-Coaching</a></li>

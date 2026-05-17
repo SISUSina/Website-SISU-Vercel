@@ -819,9 +819,10 @@ section { padding: var(--space-xl) 0; }
     line-height: 1;
 }
 /* Farb-Abstufung Tropfen — zart Rosa → mittel → Pink */
-.process-drop-1 { --drop-color: #FCDFDD; }  /* zart Rosa */
-.process-drop-2 { --drop-color: #FEA2D0; }  /* mittlere Pink-Tönung */
-.process-drop-3 { --drop-color: #FF66C4; }  /* SISU-Pink-Akzent */
+.process-drop-1 { --drop-color: #EFD0F0; }  /* zart Lavendel-Pink */
+.process-drop-2 { --drop-color: #FEC4DC; }  /* leichtes Rosa */
+.process-drop-3 { --drop-color: #FEA2D0; }  /* mittlere Pink-Tönung */
+.process-drop-4 { --drop-color: #FF66C4; }  /* SISU-Pink-Akzent */
 
 .process-text {
     background: var(--color-bg-alt);
@@ -833,6 +834,9 @@ section { padding: var(--space-xl) 0; }
     flex-direction: column;
     justify-content: center;
 }
+/* In der Mehrwert-Section (section-alt = hellgrau) sind die Karten beige,
+   damit sie sichtbar bleiben — gespiegelt zu workshops-vortraege.html. */
+.co-mehrwert-grid .process-text { background: var(--color-bg); }
 .process-text h3 {
     /* Auf coaching.html: angepasst an fu-pillar / fu-gain Card-Überschriften (Jost Sans, klein, gespaced) */
     font-family: var(--font-body);
@@ -2172,9 +2176,10 @@ section { padding: var(--space-xl) 0; }
     line-height: 1;
 }
 /* Farb-Abstufung Tropfen — zart Rosa → mittel → Pink */
-.process-drop-1 { --drop-color: #FCDFDD; }  /* zart Rosa */
-.process-drop-2 { --drop-color: #FEA2D0; }  /* mittlere Pink-Tönung */
-.process-drop-3 { --drop-color: #FF66C4; }  /* SISU-Pink-Akzent */
+.process-drop-1 { --drop-color: #EFD0F0; }  /* zart Lavendel-Pink */
+.process-drop-2 { --drop-color: #FEC4DC; }  /* leichtes Rosa */
+.process-drop-3 { --drop-color: #FEA2D0; }  /* mittlere Pink-Tönung */
+.process-drop-4 { --drop-color: #FF66C4; }  /* SISU-Pink-Akzent */
 
 .process-text {
     background: var(--color-bg-alt);
@@ -2186,6 +2191,9 @@ section { padding: var(--space-xl) 0; }
     flex-direction: column;
     justify-content: center;
 }
+/* In der Mehrwert-Section (section-alt = hellgrau) sind die Karten beige,
+   damit sie sichtbar bleiben — gespiegelt zu workshops-vortraege.html. */
+.co-mehrwert-grid .process-text { background: var(--color-bg); }
 .process-text h3 {
     /* Auf coaching.html: angepasst an fu-pillar / fu-gain Card-Überschriften (Jost Sans, klein, gespaced) */
     font-family: var(--font-body);
@@ -2313,6 +2321,18 @@ section { padding: var(--space-xl) 0; }
 .co-ziel blockquote em {
     font-style: italic;
     color: var(--color-pink);
+}
+
+/* Standalone-Variante: das Ziel-Statement als eigene kleine Section vor dem CTA.
+   Reset der Margin-/Border-Eigenschaften, die nur sinnvoll waren, wenn ein Grid darüber stand. */
+.co-ziel-section {
+    padding: var(--space-xl) 0;
+    text-align: center;
+}
+.co-ziel-section .co-ziel {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
 }
 
 /* Mehrwert-Grid bleibt bei 3 Spalten (fu-gains-grid default) — kein Override nötig */
@@ -2516,9 +2536,10 @@ html body main section .legal-content h2 {
             <img src="assets/sisu-logo-header.png" alt="SISU">
         </a>
         <ul class="nav-links">
-            <li><a href="fuer-unternehmen.html">Für Unternehmen</a></li>
+            <li><a href="fuer-unternehmen.html">Warum SISU</a></li>
+            <li><a href="begleitung-im-unternehmen.html">Begleitung</a></li>
             <li><a href="coaching.html" aria-current="page">1:1-Coaching</a></li>
-            <li><a href="workshops-vortraege.html">Workshops &amp; Vorträge</a></li>
+            <li><a href="workshops-vortraege.html">Workshops &amp; Keynotes</a></li>
             <li><a href="ueber-mich.html">Über mich</a></li>
             <li><a href="sisu.html">SISU</a></li>
         </ul>
@@ -2537,7 +2558,7 @@ html body main section .legal-content h2 {
         <p class="fu-hero-lead">Mentale Erschöpfung, chronischer Stress, private Herausforderungen oder ein Kinderwunsch — all das kann Mitarbeitende stark belasten und wirkt sich oft direkt auf den Berufsalltag aus. Genau hier setzt meine 1:1-Begleitung an.</p>
         <div class="fu-hero-ctas">
             <a href="#kontakt" class="btn btn-primary">30 Minuten Erstgespräch</a>
-            <a href="#was-erhalten" class="btn btn-secondary">Was Mitarbeitende erhalten</a>
+            <a href="#mehrwert" class="btn btn-secondary">Mehrwert für Ihr Unternehmen</a>
         </div>
     </div>
 </section>
@@ -2604,38 +2625,60 @@ html body main section .legal-content h2 {
     </div>
 </section>
 
-<!-- ===================== WAS MITARBEITENDE ERHALTEN (4 Floating-Number-Cards) ===================== -->
-<section class="fu-gains section-alt" id="was-erhalten">
+<!-- ===================== MEHRWERT (Tropfen-Pattern, verschoben aus dem unteren Seitenbereich) =====================
+     HINWEIS: section-alt (hellgrau) zur Abgrenzung zu Anlässe (beige oben) und Kinderwunsch (beige unten) —
+     die Karten innen sind dafür beige (siehe .co-mehrwert-grid Override unten), damit sie sichtbar bleiben. -->
+<section class="process section-alt" id="mehrwert">
     <div class="container">
-        <div class="fu-gains-intro">
-            <span class="eyebrow">Im geschützten Rahmen</span>
-            <h2>Vier Dinge, die Mitarbeitende erhalten.</h2>
+        <span class="eyebrow" style="display: block; text-align: center;">Ihr Mehrwert als Unternehmen</span>
+        <h2>Vier klare Effekte für Ihre Organisation.</h2>
+
+        <div class="process-grid co-mehrwert-grid">
+            <article class="process-step">
+                <div class="process-drop process-drop-1">
+                    <div class="process-drop-inner">
+                        <span class="process-num">01</span>
+                    </div>
+                </div>
+                <div class="process-text">
+                    <h3>Mentale Gesundheit</h3>
+                    <p>Sie stärken die mentale Gesundheit Ihrer Mitarbeitenden — nachhaltig, präventiv und mit spürbarer Wirkung im Alltag.</p>
+                </div>
+            </article>
+            <article class="process-step">
+                <div class="process-drop process-drop-2">
+                    <div class="process-drop-inner">
+                        <span class="process-num">02</span>
+                    </div>
+                </div>
+                <div class="process-text">
+                    <h3>Weniger Ausfälle</h3>
+                    <p>Sie verringern Krankheitstage und beugen innerer Kündigung vor — bevor aus Belastung ein Rückzug oder Wechsel wird.</p>
+                </div>
+            </article>
+            <article class="process-step">
+                <div class="process-drop process-drop-3">
+                    <div class="process-drop-inner">
+                        <span class="process-num">03</span>
+                    </div>
+                </div>
+                <div class="process-text">
+                    <h3>Employer Branding</h3>
+                    <p>Sie binden und gewinnen loyale, leistungsfähige Mitarbeitende — und werden sichtbar als Arbeitgeber, der die Themen wahrnimmt, die wirklich zählen.</p>
+                </div>
+            </article>
+            <article class="process-step">
+                <div class="process-drop process-drop-4">
+                    <div class="process-drop-inner">
+                        <span class="process-num">04</span>
+                    </div>
+                </div>
+                <div class="process-text">
+                    <h3>Frauen in Führung</h3>
+                    <p>Sie schaffen Rahmenbedingungen, in denen mehr Frauen den Weg in Führungspositionen finden — und leisten einen konkreten Beitrag zu mehr Gleichstellung im Unternehmen.</p>
+                </div>
+            </article>
         </div>
-        <div class="fu-gains-grid co-erhalten-grid">
-            <article class="fu-gain">
-                <div class="fu-gain-num">01</div>
-                <h3>Emotionale Entlastung</h3>
-                <p>Ein Raum, in dem Druck abfallen darf, Belastung Worte findet und nichts beschönigt werden muss.</p>
-            </article>
-            <article class="fu-gain">
-                <div class="fu-gain-num">02</div>
-                <h3>Neue Perspektiven</h3>
-                <p>Andere Blickwinkel auf die eigene Situation — fernab des Alltags, mit dem nötigen Abstand.</p>
-            </article>
-            <article class="fu-gain">
-                <div class="fu-gain-num">03</div>
-                <h3>Klare Orientierung</h3>
-                <p>Struktur und Klarheit darüber, was wirklich ansteht — und was warten kann.</p>
-            </article>
-            <article class="fu-gain">
-                <div class="fu-gain-num">04</div>
-                <h3>Konkrete Schritte</h3>
-                <p>Handlungsfähige Maßnahmen zur Stabilisierung und Stärkung — passend zur Lebensphase.</p>
-            </article>
-        </div>
-        <p class="co-package-note">
-            Die Coachings sind <strong>individuell zugeschnitten, lösungsorientiert und praxisnah</strong> — ob als punktuelle Unterstützung oder als Prozessbegleitung über mehrere Wochen oder Monate.
-        </p>
     </div>
 </section>
 
@@ -2722,51 +2765,11 @@ html body main section .legal-content h2 {
     </div>
 </section>
 
-<!-- ===================== MEHRWERT (Tropfen-Pattern wie Startseite) + ZIEL-STATEMENT ===================== -->
-<!-- HINWEIS: Kein section-alt, damit Color-Rotation erhalten bleibt (sonst 3× hellgrau hintereinander mit CTA).
-     Die hellgrauen Textboxen heben sich auf beige als Mini-Karten ab. -->
-<section class="process" id="mehrwert">
+<!-- ===================== ZIEL-STATEMENT (Closing-Quote vor dem CTA) =====================
+     War zuvor Teil der Mehrwert-Section; nach deren Verschiebung nach oben als eigener Mini-Block hier belassen,
+     um den starken Abschluss-Charakter vor dem CTA zu erhalten. -->
+<section class="co-ziel-section">
     <div class="container">
-        <span class="eyebrow" style="display: block; text-align: center;">Ihr Mehrwert als Unternehmen</span>
-        <h2>Drei klare Effekte für Ihre Organisation.</h2>
-
-        <div class="process-grid">
-            <article class="process-step">
-                <div class="process-drop process-drop-1">
-                    <div class="process-drop-inner">
-                        <span class="process-num">01</span>
-                    </div>
-                </div>
-                <div class="process-text">
-                    <h3>Mentale Gesundheit</h3>
-                    <p>Sie stärken die mentale Gesundheit Ihrer Mitarbeitenden — nachhaltig, präventiv und mit spürbarer Wirkung im Alltag.</p>
-                </div>
-            </article>
-            <article class="process-step">
-                <div class="process-drop process-drop-2">
-                    <div class="process-drop-inner">
-                        <span class="process-num">02</span>
-                    </div>
-                </div>
-                <div class="process-text">
-                    <h3>Weniger Ausfälle</h3>
-                    <p>Sie verringern Krankheitstage und beugen innerer Kündigung vor — bevor aus Belastung ein Rückzug oder Wechsel wird.</p>
-                </div>
-            </article>
-            <article class="process-step">
-                <div class="process-drop process-drop-3">
-                    <div class="process-drop-inner">
-                        <span class="process-num">03</span>
-                    </div>
-                </div>
-                <div class="process-text">
-                    <h3>Empathische Kultur</h3>
-                    <p>Sie tragen aktiv zu einer gesunden, empathischen Unternehmenskultur bei — und machen Fürsorge zu einem gelebten Wert.</p>
-                </div>
-            </article>
-        </div>
-
-        <!-- Ziel-Statement als Closing-Quote -->
         <div class="co-ziel">
             <span class="eyebrow">Das Ziel</span>
             <blockquote>
@@ -2804,6 +2807,7 @@ html body main section .legal-content h2 {
             <div class="footer-col">
                 <h4>Angebote</h4>
                 <ul>
+                    <li><a href="begleitung-im-unternehmen.html">Begleitung im Unternehmen</a></li>
                     <li><a href="workshops-vortraege.html">Workshops &amp; Keynotes</a></li>
                     <li><a href="fuer-unternehmen.html">Für Unternehmen</a></li>
                     <li><a href="coaching.html">1:1-Coaching</a></li>
