@@ -2479,14 +2479,11 @@ html body main section .legal-content h2 {
     margin-top: auto;
     padding-top: var(--space-sm);
 }
-/* CORE als Empfehlung hervorheben */
+/* CORE: nur farblich (dunkelblau) hervorgehoben — gleiche Höhe/Position wie die anderen */
 .bu-paket-featured {
     background: var(--color-text);
     color: var(--color-bg);
-    transform: translateY(-8px);
-    box-shadow: 0 8px 28px rgba(62, 75, 92, 0.18);
 }
-.bu-paket-featured:hover { transform: translateY(-12px); }
 .bu-paket-featured .bu-paket-name { color: var(--color-accent); }
 .bu-paket-featured .bu-paket-price { color: var(--color-bg); }
 .bu-paket-featured .bu-paket-price small { color: rgba(236, 230, 227, 0.7); }
@@ -2518,8 +2515,6 @@ html body main section .legal-content h2 {
 }
 @media (max-width: 900px) {
     .bu-pakete-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
-    .bu-paket-featured { transform: none; }
-    .bu-paket-featured:hover { transform: translateY(-3px); }
 }
 
 /* =========================================================
@@ -2778,7 +2773,6 @@ html body main section .legal-content h2 {
 
             <!-- PAKET 2: CORE (Empfehlung) -->
             <article class="bu-paket bu-paket-featured">
-                <span class="bu-paket-badge">Empfehlung</span>
                 <div class="bu-paket-name">Core</div>
                 <div class="bu-paket-price">ab 4.500&nbsp;€<small>Vollständige Begleitung</small></div>
                 <p class="bu-paket-tagline">Das komplette Programm. Für Unternehmen, die echte, messbare Wirkung wollen — über alle drei Ebenen.</p>
