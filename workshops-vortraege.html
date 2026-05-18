@@ -1434,7 +1434,7 @@ section { padding: var(--space-xl) 0; }
         position: static;
         transform: none;
         left: auto;
-        margin: calc(var(--space-xl) * 0.8) auto calc(var(--space-md) * 0.8); /* −20 % oben + unten */
+        margin: calc(var(--space-xl) * 0.72) auto calc(var(--space-md) * 0.72); /* nochmal −10 % (kumuliert −28 %) */
         width: 280px;
     }
 }
@@ -2331,15 +2331,15 @@ section { padding: var(--space-xl) 0; }
     }
     .co-themes-grid .fu-pillar,
     .co-themes-grid .fu-pillar:nth-child(odd),
-    .co-themes-grid .fu-pillar:nth-child(3n+1) {
+    .co-themes-grid .fu-pillar:nth-child(3n+1),
+    .co-themes-grid .fu-pillar:first-child {
         border-left: none;
         border-top: 1px solid var(--color-border);
-        padding: var(--space-md) 0;
+        padding: var(--space-lg) 0;        /* doppeltes vertikales Padding für mehr Atem */
+        min-height: 340px;                  /* Mindesthöhe, damit justify-content:center wirklich greift */
+        padding-top: var(--space-lg);       /* überschreibt first-child Sonder-Reset */
     }
-    .co-themes-grid .fu-pillar:first-child {
-        border-top: none;
-        padding-top: 0;
-    }
+    .co-themes-grid .fu-pillar h3 { min-height: 0; }   /* h3 nicht künstlich strecken */
 }
 
 /* Closing-Paragraph nach den Themen-Cards */
@@ -2732,7 +2732,7 @@ html body main section .legal-content h2 {
 <section class="hero hero-about">
     <div class="hero-container">
         <div class="hero-content">
-            <span class="eyebrow">Workshops &amp; Vorträge</span>
+            <span class="eyebrow">Workshops &amp; Keynotes</span>
             <h1>Impulse, die wirken — für <em>mentale Gesundheit</em> am Arbeitsplatz.</h1>
             <p class="hero-lead">
                 Manche Themen brauchen mehr als einen Impuls — sie brauchen Raum. Andere brauchen einen kraftvollen Anstoß, der Menschen bewegt. Beides bringe ich in Ihr Unternehmen.
