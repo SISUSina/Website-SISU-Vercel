@@ -627,6 +627,12 @@ section { padding: var(--space-xl) 0; }
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: calc(var(--space-lg) * 4);            /* 16 rem = +300 % mehr Abstand zwischen den 3 Spalten (gewünschte breite Trennung wie im Layout-Bild) */
 }
+/* Mobile: drastisch kleinerer Gap zwischen den Stats — sonst klafft eine Lücke
+   von 16 rem zwischen Quelle und nächstem Stat (auf Desktop ist das ein
+   horizontaler Spalten-Abstand, der auf Mobile vertikal wird). */
+@media (max-width: 700px) {
+    .stats-grid { gap: var(--space-md); }
+}
 .stat {
     padding: var(--space-lg) 0 var(--space-md);
     border-top: 2px solid var(--color-accent);

@@ -1123,6 +1123,10 @@ section { padding: var(--space-xl) 0; }
     font-weight: 400;
 }
 @media (max-width: 800px) { .authority-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) {
+    .authority-grid { grid-template-columns: 1fr; gap: var(--space-md) 0; }
+    .authority-circle { width: 160px; height: 160px; }
+}
 
 /* =========================================================
    SECTION: FAQ
@@ -1452,7 +1456,7 @@ section { padding: var(--space-xl) 0; }
         position: static;
         transform: none;
         left: auto;
-        margin: 0 auto var(--space-md);
+        margin: var(--space-xl) auto var(--space-md); /* mehr Top-Abstand zum Button drüber */
         width: 280px;
     }
 }
