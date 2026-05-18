@@ -242,10 +242,35 @@ section { padding: var(--space-xl) 0; }
 .nav-toggle { display: none; }
 
 @media (max-width: 900px) {
+    .nav { position: relative; flex-wrap: wrap; }
     .nav-links { display: none; }
+    .nav-links.is-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--color-bg);
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+        padding: var(--space-sm) var(--space-md) var(--space-md);
+        gap: 0;
+        z-index: 49;
+        box-shadow: 0 8px 16px rgba(62, 75, 92, 0.08);
+    }
+    .nav-links.is-open li { width: 100%; }
+    .nav-links.is-open li a {
+        display: block;
+        padding: 0.85em 0;
+        font-size: 1.05rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+    .nav-links.is-open li:last-child a { border-bottom: none; }
+    .nav-links.is-open a[aria-current="page"]::after { display: none; }
     .nav-toggle {
         display: block; font-size: 1.5rem; color: var(--color-text);
-        padding: 0.25rem 0.5rem;
+        padding: 0.25rem 0.5rem; cursor: pointer;
     }
 }
 
@@ -3002,6 +3027,43 @@ html body main section .legal-content h2 {
                 clearStored();
                 show();
             });
+        }
+    });
+})();
+</script>
+
+
+<script>
+// Mobile-Burger-Menu: Toggle .is-open auf .nav-links beim Klick
+(function() {
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (!toggle || !navLinks) return;
+
+    function setIcon(open) {
+        toggle.textContent = open ? '✕' : '☰';
+        toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    }
+
+    toggle.addEventListener('click', function() {
+        const willOpen = !navLinks.classList.contains('is-open');
+        navLinks.classList.toggle('is-open');
+        setIcon(willOpen);
+    });
+
+    // Schließt das Menü, wenn auf einen Link geklickt wird
+    navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', function() {
+            navLinks.classList.remove('is-open');
+            setIcon(false);
+        });
+    });
+
+    // Schließt das Menü mit Esc-Taste
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navLinks.classList.contains('is-open')) {
+            navLinks.classList.remove('is-open');
+            setIcon(false);
         }
     });
 })();

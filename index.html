@@ -242,10 +242,35 @@ section { padding: var(--space-xl) 0; }
 .nav-toggle { display: none; }
 
 @media (max-width: 900px) {
+    .nav { position: relative; flex-wrap: wrap; }
     .nav-links { display: none; }
+    .nav-links.is-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--color-bg);
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+        padding: var(--space-sm) var(--space-md) var(--space-md);
+        gap: 0;
+        z-index: 49;
+        box-shadow: 0 8px 16px rgba(62, 75, 92, 0.08);
+    }
+    .nav-links.is-open li { width: 100%; }
+    .nav-links.is-open li a {
+        display: block;
+        padding: 0.85em 0;
+        font-size: 1.05rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+    .nav-links.is-open li:last-child a { border-bottom: none; }
+    .nav-links.is-open a[aria-current="page"]::after { display: none; }
     .nav-toggle {
         display: block; font-size: 1.5rem; color: var(--color-text);
-        padding: 0.25rem 0.5rem;
+        padding: 0.25rem 0.5rem; cursor: pointer;
     }
 }
 
@@ -1102,6 +1127,10 @@ section { padding: var(--space-xl) 0; }
     font-weight: 400;
 }
 @media (max-width: 800px) { .authority-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) {
+    .authority-grid { grid-template-columns: 1fr; gap: var(--space-md) 0; }
+    .authority-circle { width: 160px; height: 160px; }
+}
 
 /* =========================================================
    SECTION: FAQ
@@ -2065,11 +2094,15 @@ html body main section .legal-content h2 {
         requestAnimationFrame(step);
     }
 
-    // Observer auf die ganze Stats-Section — Counter starten erst, wenn
-    // der User bei der „3 Belege"-Section angekommen ist (50% sichtbar +
-    // 80px Toleranz vom unteren Rand).
-    const statsSection = document.querySelector('section.stats');
-    if (!statsSection) return;
+    // Observer pro Stat-Box (statt auf die ganze Section) — wichtig für Mobile,
+    // wo die Section höher als der Viewport ist und threshold:0.5 nie erreicht würde.
+    // Jede Stat-Box wird einzeln getriggert, sobald sie zu 30% sichtbar wird.
+    const stats = document.querySelectorAll('.stat');
+    if (!stats.length) {
+        // Fallback: alle Counter sofort animieren falls keine .stat-Container vorhanden
+        counters.forEach(animateCount);
+        return;
+    }
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -2077,9 +2110,9 @@ html body main section .legal-content h2 {
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5, rootMargin: '0px 0px -80px 0px' });
+    }, { threshold: 0.3, rootMargin: '0px 0px -40px 0px' });
 
-    observer.observe(statsSection);
+    stats.forEach(stat => observer.observe(stat));
 })();
 </script>
 
@@ -2154,6 +2187,43 @@ html body main section .legal-content h2 {
                 clearStored();
                 show();
             });
+        }
+    });
+})();
+</script>
+
+
+<script>
+// Mobile-Burger-Menu: Toggle .is-open auf .nav-links beim Klick
+(function() {
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (!toggle || !navLinks) return;
+
+    function setIcon(open) {
+        toggle.textContent = open ? '✕' : '☰';
+        toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    }
+
+    toggle.addEventListener('click', function() {
+        const willOpen = !navLinks.classList.contains('is-open');
+        navLinks.classList.toggle('is-open');
+        setIcon(willOpen);
+    });
+
+    // Schließt das Menü, wenn auf einen Link geklickt wird
+    navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', function() {
+            navLinks.classList.remove('is-open');
+            setIcon(false);
+        });
+    });
+
+    // Schließt das Menü mit Esc-Taste
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navLinks.classList.contains('is-open')) {
+            navLinks.classList.remove('is-open');
+            setIcon(false);
         }
     });
 })();
