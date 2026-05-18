@@ -1434,7 +1434,7 @@ section { padding: var(--space-xl) 0; }
         position: static;
         transform: none;
         left: auto;
-        margin: var(--space-xl) auto var(--space-md); /* mehr Top-Abstand zum Button drüber */
+        margin: calc(var(--space-xl) * 0.8) auto calc(var(--space-md) * 0.8); /* −20 % oben + unten */
         width: 280px;
     }
 }
@@ -1797,6 +1797,7 @@ section { padding: var(--space-xl) 0; }
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Inhalt vertikal mittig im Kasten — vermeidet "oben zu hoch / unten leer" */
 }
 .fu-pillar:first-child { border-left: none; }
 .fu-pillar-icon {
