@@ -242,7 +242,8 @@ section { padding: var(--space-xl) 0; }
 .nav-toggle { display: none; }
 
 @media (max-width: 900px) {
-    .nav { position: relative; flex-wrap: wrap; }
+    .nav { position: relative; gap: var(--space-sm); }   /* kein flex-wrap mehr, damit Burger in der oberen Zeile bleibt */
+    .nav > .btn-primary { margin-left: auto; }              /* Kundenportal-Button rechts; Burger danach */
     .nav-links { display: none; }
     .nav-links.is-open {
         display: flex;
